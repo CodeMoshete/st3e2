@@ -1,0 +1,259 @@
+fileFormatVersion: 2
+guid: eefbaa59da43d154f90e8526033ba3ea
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box225
+    100002: Box226
+    100004: Box240
+    100006: Box241
+    100008: Box242
+    100010: Box243
+    100012: Box244
+    100014: Box245
+    100016: Box246
+    100018: Box247
+    100020: Box248
+    100022: Box249
+    100024: Box250
+    100026: Box251
+    100028: Box252
+    100030: ChamferBox62
+    100032: ChamferBox63
+    100034: ChamferBox64
+    100036: ChamferBox67
+    100038: ChamferBox68
+    100040: ChamferBox78
+    100042: ChamferBox79
+    100044: ChamferBox80
+    100046: ChamferBox81
+    100048: ChamferBox82
+    100050: Divider13
+    100052: //RootNode
+    100054: InteriorWall02
+    100056: Plane39
+    100058: Plane40
+    100060: Plane42
+    100062: Plane44
+    100064: Socket1
+    100066: Socket2
+    100068: Wall20
+    400000: Box225
+    400002: Box226
+    400004: Box240
+    400006: Box241
+    400008: Box242
+    400010: Box243
+    400012: Box244
+    400014: Box245
+    400016: Box246
+    400018: Box247
+    400020: Box248
+    400022: Box249
+    400024: Box250
+    400026: Box251
+    400028: Box252
+    400030: ChamferBox62
+    400032: ChamferBox63
+    400034: ChamferBox64
+    400036: ChamferBox67
+    400038: ChamferBox68
+    400040: ChamferBox78
+    400042: ChamferBox79
+    400044: ChamferBox80
+    400046: ChamferBox81
+    400048: ChamferBox82
+    400050: Divider13
+    400052: //RootNode
+    400054: InteriorWall02
+    400056: Plane39
+    400058: Plane40
+    400060: Plane42
+    400062: Plane44
+    400064: Socket1
+    400066: Socket2
+    400068: Wall20
+    2100000: 01 - Default.002
+    2100002: 03 - Default.002
+    2100004: No Name
+    2100006: 01 - Defaultwe.002
+    2100008: 07 - Default.002
+    2100010: 08 - Default.002
+    2100012: 09 - Default.002
+    2300000: Box225
+    2300002: Box226
+    2300004: Box240
+    2300006: Box241
+    2300008: Box242
+    2300010: Box243
+    2300012: Box244
+    2300014: Box245
+    2300016: Box246
+    2300018: Box247
+    2300020: Box248
+    2300022: Box249
+    2300024: Box250
+    2300026: Box251
+    2300028: Box252
+    2300030: ChamferBox62
+    2300032: ChamferBox63
+    2300034: ChamferBox64
+    2300036: ChamferBox67
+    2300038: ChamferBox68
+    2300040: ChamferBox78
+    2300042: ChamferBox79
+    2300044: ChamferBox80
+    2300046: ChamferBox81
+    2300048: ChamferBox82
+    2300050: Plane39
+    2300052: Plane40
+    2300054: Plane42
+    2300056: Plane44
+    2300058: Socket1
+    2300060: Socket2
+    3300000: Box225
+    3300002: Box226
+    3300004: Box240
+    3300006: Box241
+    3300008: Box242
+    3300010: Box243
+    3300012: Box244
+    3300014: Box245
+    3300016: Box246
+    3300018: Box247
+    3300020: Box248
+    3300022: Box249
+    3300024: Box250
+    3300026: Box251
+    3300028: Box252
+    3300030: ChamferBox62
+    3300032: ChamferBox63
+    3300034: ChamferBox64
+    3300036: ChamferBox67
+    3300038: ChamferBox68
+    3300040: ChamferBox78
+    3300042: ChamferBox79
+    3300044: ChamferBox80
+    3300046: ChamferBox81
+    3300048: ChamferBox82
+    3300050: Plane39
+    3300052: Plane40
+    3300054: Plane42
+    3300056: Plane44
+    3300058: Socket1
+    3300060: Socket2
+    4300000: Socket2
+    4300002: Socket1
+    4300004: Plane44
+    4300006: ChamferBox82
+    4300008: ChamferBox81
+    4300010: ChamferBox80
+    4300012: ChamferBox79
+    4300014: ChamferBox78
+    4300016: Plane42
+    4300018: Box252
+    4300020: Box251
+    4300022: Box250
+    4300024: Box249
+    4300026: Box248
+    4300028: Box247
+    4300030: Box246
+    4300032: Box245
+    4300034: Box244
+    4300036: Box243
+    4300038: Box242
+    4300040: Box241
+    4300042: ChamferBox68
+    4300044: Box240
+    4300046: ChamferBox67
+    4300048: Box226
+    4300050: Box225
+    4300052: ChamferBox64
+    4300054: ChamferBox63
+    4300056: Plane40
+    4300058: Plane39
+    4300060: ChamferBox62
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,267 @@
+fileFormatVersion: 2
+guid: 4e8b835169bfbf94eb2189f7ecd71cfd
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box197
+    100002: Box198
+    100004: Box212
+    100006: Box213
+    100008: Box214
+    100010: Box215
+    100012: Box216
+    100014: Box217
+    100016: Box218
+    100018: Box219
+    100020: Box220
+    100022: Box221
+    100024: Box222
+    100026: Box223
+    100028: Box224
+    100030: Camera
+    100032: ChamferBox55
+    100034: ChamferBox56
+    100036: ChamferBox57
+    100038: ChamferBox58
+    100040: ChamferBox59
+    100042: ChamferBox60
+    100044: ChamferBox61
+    100046: ChamferBox70
+    100048: ChamferBox71
+    100050: ChamferBox72
+    100052: Divider12
+    100054: //RootNode
+    100056: InteriorWall
+    100058: Lamp
+    100060: Plane35
+    100062: Plane36
+    100064: Plane37
+    100066: Plane38
+    100068: Straight
+    100070: Wall18
+    100072: BackPoint
+    100074: FrontPoint
+    400000: Box197
+    400002: Box198
+    400004: Box212
+    400006: Box213
+    400008: Box214
+    400010: Box215
+    400012: Box216
+    400014: Box217
+    400016: Box218
+    400018: Box219
+    400020: Box220
+    400022: Box221
+    400024: Box222
+    400026: Box223
+    400028: Box224
+    400030: Camera
+    400032: ChamferBox55
+    400034: ChamferBox56
+    400036: ChamferBox57
+    400038: ChamferBox58
+    400040: ChamferBox59
+    400042: ChamferBox60
+    400044: ChamferBox61
+    400046: ChamferBox70
+    400048: ChamferBox71
+    400050: ChamferBox72
+    400052: Divider12
+    400054: //RootNode
+    400056: InteriorWall
+    400058: Lamp
+    400060: Plane35
+    400062: Plane36
+    400064: Plane37
+    400066: Plane38
+    400068: Straight
+    400070: Wall18
+    400072: BackPoint
+    400074: FrontPoint
+    2000000: Camera
+    2100000: 01 - Default
+    2100002: 03 - Default
+    2100004: No Name
+    2100006: 01 - Defaultwe
+    2100008: 07 - Default
+    2100010: 08 - Default
+    2100012: 09 - Default
+    2300000: Box197
+    2300002: Box198
+    2300004: Box212
+    2300006: Box213
+    2300008: Box214
+    2300010: Box215
+    2300012: Box216
+    2300014: Box217
+    2300016: Box218
+    2300018: Box219
+    2300020: Box220
+    2300022: Box221
+    2300024: Box222
+    2300026: Box223
+    2300028: Box224
+    2300030: ChamferBox55
+    2300032: ChamferBox56
+    2300034: ChamferBox57
+    2300036: ChamferBox58
+    2300038: ChamferBox59
+    2300040: ChamferBox60
+    2300042: ChamferBox61
+    2300044: ChamferBox70
+    2300046: ChamferBox71
+    2300048: ChamferBox72
+    2300050: Plane35
+    2300052: Plane36
+    2300054: Plane37
+    2300056: Plane38
+    2300058: BackPoint
+    2300060: FrontPoint
+    3300000: Box197
+    3300002: Box198
+    3300004: Box212
+    3300006: Box213
+    3300008: Box214
+    3300010: Box215
+    3300012: Box216
+    3300014: Box217
+    3300016: Box218
+    3300018: Box219
+    3300020: Box220
+    3300022: Box221
+    3300024: Box222
+    3300026: Box223
+    3300028: Box224
+    3300030: ChamferBox55
+    3300032: ChamferBox56
+    3300034: ChamferBox57
+    3300036: ChamferBox58
+    3300038: ChamferBox59
+    3300040: ChamferBox60
+    3300042: ChamferBox61
+    3300044: ChamferBox70
+    3300046: ChamferBox71
+    3300048: ChamferBox72
+    3300050: Plane35
+    3300052: Plane36
+    3300054: Plane37
+    3300056: Plane38
+    3300058: BackPoint
+    3300060: FrontPoint
+    4300000: Plane37
+    4300002: ChamferBox58
+    4300004: ChamferBox72
+    4300006: ChamferBox71
+    4300008: ChamferBox70
+    4300010: ChamferBox59
+    4300012: Plane38
+    4300014: Box224
+    4300016: Box223
+    4300018: Box222
+    4300020: Box221
+    4300022: Box220
+    4300024: Box219
+    4300026: Box218
+    4300028: Box217
+    4300030: Box216
+    4300032: Box215
+    4300034: Box214
+    4300036: Box213
+    4300038: ChamferBox61
+    4300040: Box212
+    4300042: ChamferBox60
+    4300044: Box198
+    4300046: Box197
+    4300048: ChamferBox57
+    4300050: ChamferBox56
+    4300052: Plane36
+    4300054: Plane35
+    4300056: ChamferBox55
+    4300058: BackPoint
+    4300060: FrontPoint
+    10800000: Lamp
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
