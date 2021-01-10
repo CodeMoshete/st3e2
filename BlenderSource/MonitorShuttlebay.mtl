@@ -1,0 +1,243 @@
+# Blender MTL File: 'MonitorShuttlebay.blend'
+# Material Count: 22
+
+newmtl BayDoor
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\BayDoor.png
+
+newmtl BrownMetal2
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\WallPanelBrown.png
+
+newmtl BrownWall
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\WallPanelTan.png
+
+newmtl Carpet
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\CarpetFloor.png
+
+newmtl Dark_Metal
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\DarkMetal.png
+
+newmtl DeckMetal
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\BayFloor.png
+
+newmtl FlourescentLights
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.438543 0.438543 0.438543
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Models\\GalaxyCorridor\\Materials\\FlourescentLights.png
+
+newmtl LCARS
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\EngineeringLCARS.png
+
+newmtl LCARS2
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\EngineeringLCARS2.png
+
+newmtl LandingPadCircle
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\LandingPadCircleMetal.png
+
+newmtl PanelSeam
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\DarkMetal.png
+
+newmtl PipeMetal
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Models\\ShuttleInterior\\WallPanel3.png
+
+newmtl Plasma
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\Plasma.png
+
+newmtl Railing
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\RailingMetal.png
+
+newmtl RimLights
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Models\\ShuttleInterior\\Lights.png
+
+newmtl ShuttlebayFloorMain
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\ShuttlebayFloor.png
+
+newmtl TopWall
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Models\\ShuttleInterior\\WallPanel3.png
+
+newmtl TransporterPadTex
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\BayDoor.png
+
+newmtl Wall_Metal
+Ns 323.999994
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Models\\GalaxyCorridor\\SeniorOfficersQuarters\\WallMetal.png
+
+newmtl WarpCore
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\WarpCoreCoil.png
+
+newmtl WarpCoreLower
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.763047 0.320107
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl YellowCircleMetal
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:\\Users\\Ben.000\\Documents\\st3e2\\ST3E2-Unity\\Assets\\Textures\\Interiors\\ShuttlebayEngineering\\LandingPadCircleMetalYellow.png

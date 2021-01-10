@@ -44,6 +44,8 @@ ModelImporter:
     100076: Empty
     100078: Empty.001
     100080: Empty.002
+    100082: Cube.033
+    100084: Cube.035
     400000: Cube
     400002: Cube.000
     400004: Cube.003
@@ -85,6 +87,8 @@ ModelImporter:
     400076: Empty
     400078: Empty.001
     400080: Empty.002
+    400082: Cube.033
+    400084: Cube.035
     2100000: PipeMetal
     2100002: Carpet
     2100004: FlourescentLights
@@ -107,6 +111,8 @@ ModelImporter:
     2100038: Plasma
     2100040: TopWall
     2100042: Material.002
+    2100044: TransporterPadTex
+    2100046: PanelSeam
     2300000: Cube
     2300002: Cube.000
     2300004: Cube.003
@@ -141,6 +147,9 @@ ModelImporter:
     2300062: Cube.030
     2300064: Cube.031
     2300066: Cube.032
+    2300068: Cube.033
+    2300070: Cube.035
+    2300072: //RootNode
     3300000: Cube
     3300002: Cube.000
     3300004: Cube.003
@@ -175,6 +184,9 @@ ModelImporter:
     3300062: Cube.030
     3300064: Cube.031
     3300066: Cube.032
+    3300068: Cube.033
+    3300070: Cube.035
+    3300072: //RootNode
     4300000: Cube.003
     4300002: Cube.005
     4300004: Cube.006
@@ -209,6 +221,8 @@ ModelImporter:
     4300062: Cube.032
     4300064: Cube.001
     4300066: Cube.002
+    4300068: Cube.033
+    4300070: Cube.035
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
