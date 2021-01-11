@@ -50,7 +50,7 @@ public class InterpolateObjectToLocationAction : CustomAction
         {
             if (pct > 0.5f)
             {
-                pct = -(2f * Mathf.Pow(pct - 1f, 2f) + 1);
+                pct = -(2f * Mathf.Pow(pct - 1f, 2f)) + 1;
             }
             else
             {
