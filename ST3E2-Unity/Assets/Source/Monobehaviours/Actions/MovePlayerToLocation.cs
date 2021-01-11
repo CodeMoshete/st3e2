@@ -10,6 +10,7 @@ public class MovePlayerToLocation : CustomAction {
     public bool disablePrevious;
     public bool IsInstantaneous;
 	public float Acceleration;
+    public CustomAction OnComplete;
 
 	private bool isActive;
 
@@ -61,5 +62,10 @@ public class MovePlayerToLocation : CustomAction {
         Player.transform.position = TargetPosition.transform.position;
         isActive = false;
         Player.GetComponent<CharacterController>().enabled = true;
+
+        if (OnComplete != null)
+        {
+            OnComplete.Initiate();
+        }
     }
 }

@@ -46,6 +46,10 @@ ModelImporter:
     100080: Empty.002
     100082: Cube.033
     100084: Cube.035
+    100086: Cube.034
+    100088: Cube.036
+    100090: Cube.037
+    100092: Cube.038
     400000: Cube
     400002: Cube.000
     400004: Cube.003
@@ -89,6 +93,10 @@ ModelImporter:
     400080: Empty.002
     400082: Cube.033
     400084: Cube.035
+    400086: Cube.034
+    400088: Cube.036
+    400090: Cube.037
+    400092: Cube.038
     2100000: PipeMetal
     2100002: Carpet
     2100004: FlourescentLights
@@ -113,6 +121,10 @@ ModelImporter:
     2100042: Material.002
     2100044: TransporterPadTex
     2100046: PanelSeam
+    2100048: DeckMetal.001
+    2100050: ControlPanel.001
+    2100052: ControlPanel
+    2100054: Grate
     2300000: Cube
     2300002: Cube.000
     2300004: Cube.003
@@ -150,6 +162,10 @@ ModelImporter:
     2300068: Cube.033
     2300070: Cube.035
     2300072: //RootNode
+    2300074: Cube.034
+    2300076: Cube.036
+    2300078: Cube.037
+    2300080: Cube.038
     3300000: Cube
     3300002: Cube.000
     3300004: Cube.003
@@ -187,6 +203,10 @@ ModelImporter:
     3300068: Cube.033
     3300070: Cube.035
     3300072: //RootNode
+    3300074: Cube.034
+    3300076: Cube.036
+    3300078: Cube.037
+    3300080: Cube.038
     4300000: Cube.003
     4300002: Cube.005
     4300004: Cube.006
@@ -223,6 +243,10 @@ ModelImporter:
     4300066: Cube.002
     4300068: Cube.033
     4300070: Cube.035
+    4300072: Cube.034
+    4300074: Cube.036
+    4300076: Cube.037
+    4300078: Cube.038
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:

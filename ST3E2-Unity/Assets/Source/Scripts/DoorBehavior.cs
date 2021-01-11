@@ -16,8 +16,6 @@ public class DoorBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		m_animators = new List<Animator>();
-
 		if (NumberText != null)
         {
 			NumberText.text = DoorNumber;

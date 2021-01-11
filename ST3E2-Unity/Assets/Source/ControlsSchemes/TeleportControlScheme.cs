@@ -71,6 +71,12 @@ public class TeleportControlScheme : IControlScheme
 
         raycastLayerMask = ~(LayerMask.GetMask(LAYER_AREA_TRIGGER) | LayerMask.GetMask(LAYER_BACKGROUND));
 
+#if UNITY_EDITOR
+        bodyObject.GetComponentInChildren<OVRCameraRig>().enabled = false;
+        bodyObject.GetComponentInChildren<CharacterCameraConstraint>().enabled = false;
+        UnityUtils.FindGameObject(bodyObject.gameObject, "OVRCameraRig").transform.Translate(0f, 0.25f, 0f);
+#endif
+
         Service.Controls.SetTouchObserver(TouchUpdate);
         Service.Controls.SetBackButtonObserver(BackUpdate);
 

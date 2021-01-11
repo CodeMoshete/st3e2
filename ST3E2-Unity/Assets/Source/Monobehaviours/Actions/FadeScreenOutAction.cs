@@ -41,6 +41,7 @@ public class FadeScreenOutAction : CustomAction
                 return;
             }
 
+            bool isComplete = false;
             Duration -= dt;
             if (Duration <= 0f)
             {
@@ -49,11 +50,17 @@ public class FadeScreenOutAction : CustomAction
                 if (OnComplete != null)
                 {
                     OnComplete.Initiate();
+                    isComplete = true;
                 }
             }
 
             float pct = totalDuration > 0f ? 1f - (Duration / totalDuration) : 1f;
             ScreenFade.SetFadeLevel(pct);
+
+            if (isComplete)
+            {
+                Duration = totalDuration;
+            }
         }
     }
 }
