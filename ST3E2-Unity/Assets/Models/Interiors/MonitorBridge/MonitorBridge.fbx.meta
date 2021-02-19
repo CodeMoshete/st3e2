@@ -21,6 +21,7 @@ ModelImporter:
     100030: Cube.006
     100032: Cube.016
     100034: Cube.039
+    100036: Cube
     400000: //RootNode
     400002: Plane
     400004: Plane.001
@@ -39,6 +40,7 @@ ModelImporter:
     400030: Cube.006
     400032: Cube.016
     400034: Cube.039
+    400036: Cube
     2100000: Wall
     2100002: WallStripe
     2100004: Wall2
@@ -57,6 +59,9 @@ ModelImporter:
     2100030: ChaffeeTexture.003
     2100032: ChaffeeTexture.004
     2100034: Dark Metal
+    2100036: WallTan
+    2100038: Material.001
+    2100040: HallwayCarpet
     2300000: Plane
     2300002: Plane.001
     2300004: Plane.002
@@ -74,6 +79,7 @@ ModelImporter:
     2300028: Cube.006
     2300030: Cube.016
     2300032: Cube.039
+    2300034: Cube
     3300000: Plane
     3300002: Plane.001
     3300004: Plane.002
@@ -91,6 +97,7 @@ ModelImporter:
     3300028: Cube.006
     3300030: Cube.016
     3300032: Cube.039
+    3300034: Cube
     4300000: Plane
     4300002: Plane.001
     4300004: Plane.002
@@ -108,6 +115,7 @@ ModelImporter:
     4300028: Cube.005
     4300030: Cube.039
     4300032: Cube.006
+    4300034: Cube
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
