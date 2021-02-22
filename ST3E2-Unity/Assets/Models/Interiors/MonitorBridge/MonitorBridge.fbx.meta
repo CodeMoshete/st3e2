@@ -13,15 +13,6 @@ ModelImporter:
     100014: Plane.006
     100016: Plane.008
     100018: Plane.009
-    100020: Cube.001
-    100022: Cube.002
-    100024: Cube.003
-    100026: Cube.004
-    100028: Cube.005
-    100030: Cube.006
-    100032: Cube.016
-    100034: Cube.039
-    100036: Cube
     400000: //RootNode
     400002: Plane
     400004: Plane.001
@@ -32,36 +23,21 @@ ModelImporter:
     400014: Plane.006
     400016: Plane.008
     400018: Plane.009
-    400020: Cube.001
-    400022: Cube.002
-    400024: Cube.003
-    400026: Cube.004
-    400028: Cube.005
-    400030: Cube.006
-    400032: Cube.016
-    400034: Cube.039
-    400036: Cube
     2100000: Wall
-    2100002: WallStripe
-    2100004: Wall2
-    2100006: UpperWallPanels1
-    2100008: DarkMetal
+    2100002: DarkMetal
+    2100004: WallStripe
+    2100006: Wall2
+    2100008: UpperWallPanels1
     2100010: CeilingGrate
-    2100012: Lights
-    2100014: Carpet
-    2100016: DarkCarpen
-    2100018: RedCarpet
-    2100020: Viewscreen
-    2100022: ComputerPanels
-    2100024: ChaffeeTexture
-    2100026: ChaffeeTexture.001
-    2100028: ChaffeeTexture.002
-    2100030: ChaffeeTexture.003
-    2100032: ChaffeeTexture.004
-    2100034: Dark Metal
-    2100036: WallTan
-    2100038: Material.001
-    2100040: HallwayCarpet
+    2100012: WallTan
+    2100014: Material.001
+    2100016: Lights
+    2100018: Carpet
+    2100020: DarkCarpen
+    2100022: RedCarpet
+    2100024: HallwayCarpet
+    2100026: Viewscreen
+    2100028: ComputerPanels
     2300000: Plane
     2300002: Plane.001
     2300004: Plane.002
@@ -71,15 +47,6 @@ ModelImporter:
     2300012: Plane.006
     2300014: Plane.008
     2300016: Plane.009
-    2300018: Cube.001
-    2300020: Cube.002
-    2300022: Cube.003
-    2300024: Cube.004
-    2300026: Cube.005
-    2300028: Cube.006
-    2300030: Cube.016
-    2300032: Cube.039
-    2300034: Cube
     3300000: Plane
     3300002: Plane.001
     3300004: Plane.002
@@ -89,15 +56,6 @@ ModelImporter:
     3300012: Plane.006
     3300014: Plane.008
     3300016: Plane.009
-    3300018: Cube.001
-    3300020: Cube.002
-    3300022: Cube.003
-    3300024: Cube.004
-    3300026: Cube.005
-    3300028: Cube.006
-    3300030: Cube.016
-    3300032: Cube.039
-    3300034: Cube
     4300000: Plane
     4300002: Plane.001
     4300004: Plane.002
@@ -107,15 +65,6 @@ ModelImporter:
     4300012: Plane.006
     4300014: Plane.008
     4300016: Plane.009
-    4300018: Cube.016
-    4300020: Cube.001
-    4300022: Cube.002
-    4300024: Cube.003
-    4300026: Cube.004
-    4300028: Cube.005
-    4300030: Cube.039
-    4300032: Cube.006
-    4300034: Cube
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -154,8 +103,8 @@ ModelImporter:
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
