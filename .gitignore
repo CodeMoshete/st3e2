@@ -4,6 +4,8 @@
 [Bb]uild/
 [Bb]uilds/
 [Ll]ogs/
+MonitorBridgeScene/
+MonitorShuttlebayScene/
 Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
