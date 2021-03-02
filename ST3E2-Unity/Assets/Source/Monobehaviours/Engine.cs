@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 using Utils;
 
 public class Engine : MonoBehaviour
@@ -39,7 +40,15 @@ public class Engine : MonoBehaviour
 
 	void Start ()
     {
-		bodyObject = GameObject.Find ("OVRPlayerController").GetComponent<OVRPlayerController>();
+        string deviceModel = SystemInfo.deviceModel;
+        switch (deviceModel)
+        {
+            case Constants.DEVICE_TYPE_QUEST:
+                XRSettings.eyeTextureResolutionScale = 1.5f;
+                break;
+        }
+
+        bodyObject = GameObject.Find ("OVRPlayerController").GetComponent<OVRPlayerController>();
         for (int i = 0, count = MirrorCameras.Count; i < count; ++i)
         {
             float scale = MirrorCameras[i].MovementScale;
