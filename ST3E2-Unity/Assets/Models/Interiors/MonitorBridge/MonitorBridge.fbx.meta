@@ -1,74 +1,200 @@
 fileFormatVersion: 2
 guid: 65869d27b17a5b749b494af7b0c2d896
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Plane
-    100004: Plane.001
-    100006: Plane.002
-    100008: Plane.003
-    100010: Plane.004
-    100012: Plane.005
-    100014: Plane.006
-    100016: Plane.008
-    100018: Plane.009
-    400000: //RootNode
-    400002: Plane
-    400004: Plane.001
-    400006: Plane.002
-    400008: Plane.003
-    400010: Plane.004
-    400012: Plane.005
-    400014: Plane.006
-    400016: Plane.008
-    400018: Plane.009
-    2100000: Wall
-    2100002: DarkMetal
-    2100004: WallStripe
-    2100006: Wall2
-    2100008: UpperWallPanels1
-    2100010: CeilingGrate
-    2100012: WallTan
-    2100014: Material.001
-    2100016: Lights
-    2100018: Carpet
-    2100020: DarkCarpen
-    2100022: RedCarpet
-    2100024: HallwayCarpet
-    2100026: Viewscreen
-    2100028: ComputerPanels
-    2300000: Plane
-    2300002: Plane.001
-    2300004: Plane.002
-    2300006: Plane.003
-    2300008: Plane.004
-    2300010: Plane.005
-    2300012: Plane.006
-    2300014: Plane.008
-    2300016: Plane.009
-    3300000: Plane
-    3300002: Plane.001
-    3300004: Plane.002
-    3300006: Plane.003
-    3300008: Plane.004
-    3300010: Plane.005
-    3300012: Plane.006
-    3300014: Plane.008
-    3300016: Plane.009
-    4300000: Plane
-    4300002: Plane.001
-    4300004: Plane.002
-    4300006: Plane.003
-    4300008: Plane.004
-    4300010: Plane.005
-    4300012: Plane.006
-    4300014: Plane.008
-    4300016: Plane.009
-    2186277476908879412: ImportLogs
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Plane
+  - first:
+      1: 100004
+    second: Plane.001
+  - first:
+      1: 100006
+    second: Plane.002
+  - first:
+      1: 100008
+    second: Plane.003
+  - first:
+      1: 100010
+    second: Plane.004
+  - first:
+      1: 100012
+    second: Plane.005
+  - first:
+      1: 100014
+    second: Plane.006
+  - first:
+      1: 100016
+    second: Plane.008
+  - first:
+      1: 100018
+    second: Plane.009
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Plane
+  - first:
+      4: 400004
+    second: Plane.001
+  - first:
+      4: 400006
+    second: Plane.002
+  - first:
+      4: 400008
+    second: Plane.003
+  - first:
+      4: 400010
+    second: Plane.004
+  - first:
+      4: 400012
+    second: Plane.005
+  - first:
+      4: 400014
+    second: Plane.006
+  - first:
+      4: 400016
+    second: Plane.008
+  - first:
+      4: 400018
+    second: Plane.009
+  - first:
+      21: 2100000
+    second: Wall
+  - first:
+      21: 2100002
+    second: DarkMetal
+  - first:
+      21: 2100004
+    second: WallStripe
+  - first:
+      21: 2100006
+    second: Wall2
+  - first:
+      21: 2100008
+    second: UpperWallPanels1
+  - first:
+      21: 2100010
+    second: CeilingGrate
+  - first:
+      21: 2100012
+    second: WallTan
+  - first:
+      21: 2100014
+    second: Material.001
+  - first:
+      21: 2100016
+    second: Lights
+  - first:
+      21: 2100018
+    second: Carpet
+  - first:
+      21: 2100020
+    second: DarkCarpen
+  - first:
+      21: 2100022
+    second: RedCarpet
+  - first:
+      21: 2100024
+    second: HallwayCarpet
+  - first:
+      21: 2100026
+    second: Viewscreen
+  - first:
+      21: 2100028
+    second: ComputerPanels
+  - first:
+      23: 2300000
+    second: Plane
+  - first:
+      23: 2300002
+    second: Plane.001
+  - first:
+      23: 2300004
+    second: Plane.002
+  - first:
+      23: 2300006
+    second: Plane.003
+  - first:
+      23: 2300008
+    second: Plane.004
+  - first:
+      23: 2300010
+    second: Plane.005
+  - first:
+      23: 2300012
+    second: Plane.006
+  - first:
+      23: 2300014
+    second: Plane.008
+  - first:
+      23: 2300016
+    second: Plane.009
+  - first:
+      33: 3300000
+    second: Plane
+  - first:
+      33: 3300002
+    second: Plane.001
+  - first:
+      33: 3300004
+    second: Plane.002
+  - first:
+      33: 3300006
+    second: Plane.003
+  - first:
+      33: 3300008
+    second: Plane.004
+  - first:
+      33: 3300010
+    second: Plane.005
+  - first:
+      33: 3300012
+    second: Plane.006
+  - first:
+      33: 3300014
+    second: Plane.008
+  - first:
+      33: 3300016
+    second: Plane.009
+  - first:
+      43: 4300000
+    second: Plane
+  - first:
+      43: 4300002
+    second: Plane.001
+  - first:
+      43: 4300004
+    second: Plane.002
+  - first:
+      43: 4300006
+    second: Plane.003
+  - first:
+      43: 4300008
+    second: Plane.004
+  - first:
+      43: 4300010
+    second: Plane.005
+  - first:
+      43: 4300012
+    second: Plane.006
+  - first:
+      43: 4300014
+    second: Plane.008
+  - first:
+      43: 4300016
+    second: Plane.009
+  - first:
+      41386430: 2186277476908879412
+    second: ImportLogs
   externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -101,25 +227,28 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 0
     importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
+    secondaryUVAreaDistortion: 15
     secondaryUVHardAngle: 88
-    secondaryUVPackMargin: 4
+    secondaryUVPackMargin: 10
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -128,10 +257,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -141,13 +270,16 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
