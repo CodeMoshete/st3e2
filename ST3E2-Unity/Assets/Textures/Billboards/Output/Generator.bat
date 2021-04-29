@@ -1,0 +1,1 @@
+magick montage Bb-0.png, Bb-1.png, Bb-2.png, Bb-3.png, Bb-4.png, Bb-5.png, Bb-6.png, Bb-7.png, Bb-8.png, Bb-9.png, Bb-10.png, Bb-11.png, Bb-12.png, Bb-13.png, Bb-14.png, Bb-15.png, Bb-16.png, Bb-17.png, Bb-18.png, Bb-19.png, Bb-20.png, Bb-21.png, Bb-22.png, Bb-23.png, Bb-24.png -tile 5x5 -geometry 204x204+0+0 -background transparent pj-walking.png
