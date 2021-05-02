@@ -19,9 +19,10 @@ public class ExplosionAreaBehavior : MonoBehaviour {
 			float width = b.bounds.size.x;
 			float height = b.bounds.size.y;
 			float depth = b.bounds.size.z;
-			Vector3 spawnPosition = new Vector3(Random.Range(t.position.x-width/2,t.position.x + width/2),
-			                                    Random.Range(t.position.y-height/2,t.position.y + height/2),
-			                                    Random.Range(t.position.z-depth/2,t.position.z + depth/2));
+			Vector3 spawnPosition = new Vector3(
+                Random.Range(t.position.x-width/2,t.position.x + width/2),
+			    Random.Range(t.position.y-height/2,t.position.y + height/2),
+			    Random.Range(t.position.z-depth/2,t.position.z + depth/2));
 			Instantiate(Resources.Load("ExplosionLD"),spawnPosition,Random.rotation);
 		}
 	}

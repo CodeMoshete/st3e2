@@ -7,10 +7,15 @@ Shader "Custom/Billboard Y Rotation Only"
 		_MainTex("Texture Image", 2D) = "white" {}
 		_ScaleX("Scale X", Float) = 1.0
 		_ScaleY("Scale Y", Float) = 1.0
+		_HIndex("Horizontal Index", Int) = 0
+		_VIndex("Vertical Index", Int) = 0
+		_ShipRot("Ship Rotation", Float) = 0.0
 	}
 
 	SubShader
 	{
+		Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
+		Blend SrcAlpha OneMinusSrcAlpha
 		Cull Off
 
 		Pass
@@ -26,6 +31,9 @@ Shader "Custom/Billboard Y Rotation Only"
 			uniform sampler2D _MainTex;
 			uniform float _ScaleX;
 			uniform float _ScaleY;
+			uniform float _ShipRot;
+			int _HIndex;
+			int _VIndex;
 
 			float4 _MainTex_ST;
 
@@ -88,12 +96,16 @@ Shader "Custom/Billboard Y Rotation Only"
 				#endif
 
 				output.tex = TRANSFORM_TEX(input.tex, _MainTex);
+				//output.tex = input.tex;
 
 				return output;
 			}
 			float4 frag(vertexOutput input) : COLOR
 			{
-				return tex2D(_MainTex, input.tex.xy);
+				float2 test = input.tex.xy / 5;
+				test.x += 0.2 * _HIndex;
+				test.y += 0.2 * _VIndex;
+				return tex2D(_MainTex, test);
 			}
 			ENDCG
 		}
