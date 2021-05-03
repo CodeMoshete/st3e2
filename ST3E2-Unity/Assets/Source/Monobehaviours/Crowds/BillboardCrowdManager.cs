@@ -33,7 +33,7 @@ public class BillboardCrowdManager : MonoBehaviour
         }
     }
 
-    private int getIndex(float componentValue)
+    private int getHIndex(float componentValue)
     {
         int returnIndex = 0;
         if (componentValue < 0.75)
@@ -41,17 +41,32 @@ public class BillboardCrowdManager : MonoBehaviour
             returnIndex++;
         }
 
-        if (componentValue < 0.45)
+        if (componentValue < 0.25)
         {
             returnIndex++;
         }
 
-        if (componentValue < -0.45)
+        if (componentValue < -0.25)
         {
             returnIndex++;
         }
 
         if (componentValue < -0.75)
+        {
+            returnIndex++;
+        }
+        return returnIndex;
+    }
+
+    private int getVIndex(float componentValue)
+    {
+        int returnIndex = 1;
+        if (componentValue < 0.5)
+        {
+            returnIndex++;
+        }
+
+        if (componentValue < -0.5)
         {
             returnIndex++;
         }
@@ -71,8 +86,8 @@ public class BillboardCrowdManager : MonoBehaviour
             float xComponent = Vector3.Dot(entity.right, vecToEntity);
             float yComponent = Vector3.Dot(entity.up, vecToEntity);
 
-            int verticalIndex = getIndex(yComponent);
-            int horizontalIndex = getIndex(zComponent);
+            int verticalIndex = getVIndex(yComponent);
+            int horizontalIndex = getHIndex(zComponent);
             int flip = xComponent < 0 ? -1 : 1;
 
             //Debug.Log("H: " + horizontalIndex + ", V: " + verticalIndex + ", F: " + flip);
