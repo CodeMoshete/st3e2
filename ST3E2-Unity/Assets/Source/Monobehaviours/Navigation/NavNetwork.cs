@@ -15,6 +15,10 @@ public class NavNetwork : MonoBehaviour
     private void Start()
     {
         nodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
+        for (int i = 0, count = nodes.Count; i < count; ++i)
+        {
+            nodes[i].Initialize();
+        }
     }
 
 #if UNITY_EDITOR
@@ -23,18 +27,38 @@ public class NavNetwork : MonoBehaviour
     {
         if (nodes.Count == 0)
         {
-            Debug.Log("Test");
             nodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
         }
 
-        Gizmos.color = Color.red;
         for (int i = 0, count = nodes.Count; i < count; ++i)
         {
+            Gizmos.color = Color.red;
             for (int j = 0, count2 = nodes[i].Links.Count; j < count2; ++j)
             {
                 NavNodeLink link = nodes[i].Links[j];
-                //Draw the suspension
                 Gizmos.DrawLine(nodes[i].transform.position, link.DestinationNode.transform.position);
+            }
+
+            Gizmos.color = Color.green;
+            Vector3 nodePos = nodes[i].transform.position;
+            float triggerRadius = nodes[i].TriggerRadius;
+            int steps = 12;
+            for (int j = 0; j < steps; ++j)
+            {
+                float pct = ((float)j / (float)steps);
+                Vector3 startPoint = new Vector3(
+                    nodePos.x + Mathf.Sin(pct * 2 * Mathf.PI) * triggerRadius,
+                    nodePos.y,
+                    nodePos.z + Mathf.Cos(pct * 2 * Mathf.PI) * triggerRadius);
+
+                float nextStep = j < steps - 1 ? j + 1 : 0;
+                float nextPct = ((float)nextStep / (float)steps);
+                Vector3 nextPoint = new Vector3(
+                    nodePos.x + Mathf.Sin(nextPct * 2 * Mathf.PI) * triggerRadius,
+                    nodePos.y,
+                    nodePos.z + Mathf.Cos(nextPct * 2 * Mathf.PI) * triggerRadius);
+
+                Gizmos.DrawLine(startPoint, nextPoint);
             }
         }
     }

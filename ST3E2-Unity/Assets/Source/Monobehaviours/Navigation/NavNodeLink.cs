@@ -14,6 +14,11 @@ public class NavNodeLink
         {
             if (cachedDistance == 0f)
             {
+                if (SourceNode == null || DestinationNode == null)
+                {
+                    Debug.LogError("Null node");
+                }
+
                 Vector3 directionVector = DestinationNode.transform.position - SourceNode.transform.position;
                 cachedDistance = Vector3.SqrMagnitude(directionVector);
             }
