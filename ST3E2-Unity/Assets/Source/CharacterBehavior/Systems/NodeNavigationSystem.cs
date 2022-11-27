@@ -59,11 +59,6 @@ public class NodeNavigationSystem : ICharacterSystem
 
             if (navComp.FinalDestination != null)
             {
-                if (!character.AnimComponent.GetBool(WALK_ANIM_KEY))
-                {
-                    character.AnimComponent.SetBool(WALK_ANIM_KEY, true);
-                }
-
                 NavNode nextNode = navComp.NavigationQueue.Peek();
 
                 Vector3 vectorToNext = nextNode.transform.position - character.transform.position;
@@ -94,7 +89,16 @@ public class NodeNavigationSystem : ICharacterSystem
                 character.transform.Rotate(new Vector3(0f, amountToRotate, 0f));
 
                 float walkDirectionModifier = Mathf.Max(Vector2.Dot(flatFwd, flatVecToNext), 0);
-                walkDirectionModifier = -Mathf.Pow(walkDirectionModifier - 1f, 4f) + 1f;
+                if (walkDirectionModifier > 0)
+                {
+                    walkDirectionModifier = -Mathf.Pow(walkDirectionModifier - 1f, 4f) + 1f;
+                }
+
+                if (!character.AnimComponent.GetBool(WALK_ANIM_KEY) && walkDirectionModifier > 0f)
+                {
+                    character.AnimComponent.SetBool(WALK_ANIM_KEY, true);
+                }
+
                 Vector3 moveVector = character.transform.forward * navComp.WalkRate * dt * walkDirectionModifier;
                 Vector3 currentPos = character.transform.position;
                 currentPos += moveVector;

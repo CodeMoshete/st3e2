@@ -15,7 +15,7 @@ public class CharacterEntity : MonoBehaviour
     private void Start()
     {
         Service.CharacterSystems.Navigation.AddCharacter(this);
-        NavComponent.TurnRate = 45f;
+        NavComponent.TurnRate = 70f;
         NavComponent.WalkRate = 1f;
 
         AnimComponent = GetComponent<Animator>();
