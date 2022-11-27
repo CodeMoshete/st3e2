@@ -6,7 +6,23 @@ public class NavNetwork : MonoBehaviour
     public NavNode StartNode;
     public NavNode DestNode;
 
-    private List<NavNode> nodes = new List<NavNode>();
+    private List<NavNode> cachedNodes;
+    private List<NavNode> nodes
+    {
+        get
+        {
+            if (cachedNodes == null)
+            {
+                cachedNodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
+
+                for (int i = 0, count = cachedNodes.Count; i < count; ++i)
+                {
+                    cachedNodes[i].Initialize();
+                }
+            }
+            return cachedNodes;
+        }
+    }
 
     // Collections used for navigational purposes.
     private HashSet<NavNode> seenNodes = new HashSet<NavNode>();
@@ -14,20 +30,15 @@ public class NavNetwork : MonoBehaviour
 
     private void Start()
     {
-        nodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
-        for (int i = 0, count = nodes.Count; i < count; ++i)
-        {
-            nodes[i].Initialize();
-        }
     }
 
 #if UNITY_EDITOR
     [ExecuteInEditMode]
     private void OnDrawGizmos()
     {
-        if (nodes.Count == 0)
+        if (cachedNodes == null)
         {
-            nodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
+            cachedNodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
         }
 
         for (int i = 0, count = nodes.Count; i < count; ++i)
@@ -64,12 +75,12 @@ public class NavNetwork : MonoBehaviour
     }
 #endif
 
-    public List<NavNodeLink> Navigate(string sourceName, string destName)
+    public Queue<NavNode> Navigate(string sourceName, string destName)
     {
         return Navigate(GetNodeByName(sourceName), GetNodeByName(destName));
     }
 
-    public List<NavNodeLink> Navigate(NavNode source, NavNode destination)
+    public Queue<NavNode> Navigate(NavNode source, NavNode destination)
     {
         for (int i = 0, count = source.Links.Count; i < count; ++i)
         {
@@ -116,7 +127,7 @@ public class NavNetwork : MonoBehaviour
             Debug.Log(optimalPath.ToString());
         }
 
-        return optimalPath.NodeLinks;
+        return optimalPath.GetNodes();
     }
 
     private void SearchNodeNetwork(NavPath currentPath, NavNode destination)

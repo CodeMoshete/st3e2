@@ -49,4 +49,18 @@ public class NavPath
         }
         return output;
     }
+
+    public Queue<NavNode> GetNodes()
+    {
+        Queue<NavNode> nodes = new Queue<NavNode>();
+        if (NodeLinks.Count > 0)
+        {
+            nodes.Enqueue(NodeLinks[0].SourceNode);
+            for (int i = 0, count = NodeLinks.Count; i < count; ++i)
+            {
+                nodes.Enqueue(NodeLinks[i].DestinationNode);
+            }
+        }
+        return nodes;
+    }
 }

@@ -28,6 +28,20 @@
         }
     }
 
+    private static CharacterSystemManager characterSystems;
+    public static CharacterSystemManager CharacterSystems
+    {
+        get
+        {
+            if (characterSystems == null)
+            {
+                characterSystems = new CharacterSystemManager();
+            }
+
+            return characterSystems;
+        }
+    }
+
     // Manually set services
     public static PlayerData PlayerData
     {
