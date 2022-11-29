@@ -71,11 +71,13 @@ public class NodeNavigationSystem : ICharacterSystem
                     navComp.NavigationQueue.Dequeue();
                     if (navComp.NavigationQueue.Count == 0)
                     {
+                        // Arrived at final destination.
                         navComp.FinalDestination = null;
                         character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
                         continue;
                     }
                     nextNode = navComp.NavigationQueue.Peek();
+                    navComp.CurrentNode = nextNode;
                     Debug.Log(arrivalMsg + ", next waypoint " + nextNode.name);
                 }
 

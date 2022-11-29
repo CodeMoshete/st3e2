@@ -42,6 +42,20 @@
         }
     }
 
+    private static TimeOfDayService timeOfDay;
+    public static TimeOfDayService TimeOfDay
+    {
+        get
+        {
+            if (timeOfDay == null)
+            {
+                timeOfDay = new TimeOfDayService();
+            }
+
+            return timeOfDay;
+        }
+    }
+
     // Manually set services
     public static PlayerData PlayerData
     {

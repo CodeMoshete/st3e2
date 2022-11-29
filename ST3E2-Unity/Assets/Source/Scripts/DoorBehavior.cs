@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -29,8 +28,8 @@ public class DoorBehavior : MonoBehaviour {
 	
     void OnTriggerEnter(Collider collisionObject) {
 		print ("Collision Detected enter");
-        if(collisionObject.tag == "Player")
-		{
+        if(collisionObject.tag == "Player" || collisionObject.tag == "NPC")
+        {
 			for(int i = 0, count = m_animators.Count; i < count; i++)
 			{
 				m_animators[i].SetBool("PlayerInRange", true);
@@ -40,7 +39,7 @@ public class DoorBehavior : MonoBehaviour {
 	
 	void OnTriggerExit(Collider collisionObject) {
 		print ("Collision Detected exit");
-        if(collisionObject.tag == "Player")
+        if(collisionObject.tag == "Player" || collisionObject.tag == "NPC")
 		{
 			for(int i = 0, count = m_animators.Count; i < count; i++)
 			{

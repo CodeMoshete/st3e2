@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class CharacterEntity : MonoBehaviour
 {
     public bool CalculateNewPath = false;
-    public string SourceNodeName;
     public string DestNodeName;
 
     // Components are added and removed by systems.
@@ -11,6 +11,10 @@ public class CharacterEntity : MonoBehaviour
     public NodeNavigationComponent NavComponent;
     [HideInInspector]
     public Animator AnimComponent;
+    [HideInInspector]
+    public CharacterDirectiveComponent DirectiveComponent;
+    public List<CharacterDirective> DefaultDirectives;
+
 
     private void Start()
     {
@@ -21,6 +25,7 @@ public class CharacterEntity : MonoBehaviour
         AnimComponent = GetComponent<Animator>();
 
         NavNetwork navNetwork = GameObject.Find("Navigation").GetComponent<NavNetwork>();
+        NavComponent.CurrentNode = navNetwork.GetNodeByName("Node"); // Set start node.
         NavComponent.NavigationQueue = navNetwork.Navigate("Node", "Node (5)");
         NavComponent.FinalDestination = navNetwork.GetNodeByName("Node (5)");
     }
@@ -31,7 +36,7 @@ public class CharacterEntity : MonoBehaviour
         {
             NavNetwork navNetwork = GameObject.Find("Navigation").GetComponent<NavNetwork>();
             CalculateNewPath = false;
-            NavComponent.NavigationQueue = navNetwork.Navigate(SourceNodeName, DestNodeName);
+            NavComponent.NavigationQueue = navNetwork.Navigate(NavComponent.CurrentNode.name, DestNodeName);
             NavComponent.FinalDestination = navNetwork.GetNodeByName(DestNodeName);
         }
     }

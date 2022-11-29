@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class NavNetwork : MonoBehaviour
 {
-    public NavNode StartNode;
-    public NavNode DestNode;
-
     private List<NavNode> cachedNodes;
     private List<NavNode> nodes
     {
@@ -121,6 +118,7 @@ public class NavNetwork : MonoBehaviour
             }
         }
         possiblePaths.Clear();
+        seenNodes.Clear();
 
         if (optimalPath != null)
         {

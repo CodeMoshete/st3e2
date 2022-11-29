@@ -4,6 +4,7 @@ public class NodeNavigationComponent
 {
     public Queue<NavNode> NavigationQueue;
     public NavNode FinalDestination;
+    public NavNode CurrentNode;
     public float WalkRate;
     public float TurnRate;
 }
