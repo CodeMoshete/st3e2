@@ -3,6 +3,29 @@ using UnityEngine;
 
 public class NavNetwork : MonoBehaviour
 {
+    public string NetworkName;
+
+    [HideInInspector]
+    private List<NavNode> cachedExitNodes;
+    public List<NavNode> ExitNodes
+    {
+        get
+        {
+            if (cachedExitNodes == null)
+            {
+                cachedExitNodes = new List<NavNode>();
+                for (int i = 0, count = nodes.Count; i < count; ++i)
+                {
+                    if (!string.IsNullOrEmpty(nodes[i].ExitNodeTag))
+                    {
+                        cachedExitNodes.Add(nodes[i]);
+                    }
+                }
+            }
+            return cachedExitNodes;
+        }
+    }
+
     private List<NavNode> cachedNodes;
     private List<NavNode> nodes
     {
@@ -24,10 +47,6 @@ public class NavNetwork : MonoBehaviour
     // Collections used for navigational purposes.
     private HashSet<NavNode> seenNodes = new HashSet<NavNode>();
     private List<NavPath> possiblePaths = new List<NavPath>();
-
-    private void Start()
-    {
-    }
 
 #if UNITY_EDITOR
     [ExecuteInEditMode]
@@ -126,6 +145,74 @@ public class NavNetwork : MonoBehaviour
         }
 
         return optimalPath.GetNodes();
+    }
+
+    public Queue<NavNode> NavigateToExitNode(string sourceName)
+    {
+        return NavigateToExitNode(GetNodeByName(sourceName));
+    }
+
+    public Queue<NavNode> NavigateToExitNode(NavNode source)
+    {
+        NavNode exitNode = GetClosestExitNode(source);
+        if (exitNode != null)
+        {
+            return Navigate(source, exitNode);
+        }
+        return null;
+    }
+
+    public Queue<NavNode> NavigateFromExitNode(string destName, string exitNodeTag = null)
+    {
+        return NavigateFromExitNode(GetNodeByName(destName), exitNodeTag);
+    }
+
+    public Queue<NavNode> NavigateFromExitNode(NavNode dest, string exitNodeTag = null)
+    {
+        NavNode exitNode = null;
+        if (!string.IsNullOrEmpty(exitNodeTag))
+        {
+            exitNode = GetExitNodeByTag(exitNodeTag);
+        }
+        else
+        {
+            exitNode = ExitNodes.Count > 0 ? ExitNodes[Random.Range(0, ExitNodes.Count)] : null;
+        }
+
+        if (exitNode != null)
+        {
+            return Navigate(exitNode, dest);
+        }
+        return null;
+    }
+
+    private NavNode GetClosestExitNode(NavNode source)
+    {
+        NavNode closestExitNode = null;
+        float closestDistance = float.MaxValue;
+        for (int i = 0, count = cachedExitNodes.Count; i < count; ++i)
+        {
+            Vector3 sourcePos = source.transform.position;
+            float thisDist = Vector3.SqrMagnitude(cachedExitNodes[i].transform.position - sourcePos);
+            if (thisDist < closestDistance)
+            {
+                closestDistance = thisDist;
+                closestExitNode = cachedExitNodes[i];
+            }
+        }
+        return closestExitNode;
+    }
+
+    private NavNode GetExitNodeByTag(string exitNodeTag)
+    {
+        for (int i = 0, count = ExitNodes.Count; i < count; ++i)
+        {
+            if (ExitNodes[i].ExitNodeTag == exitNodeTag)
+            {
+                return ExitNodes[i];
+            }
+        }
+        return null;
     }
 
     private void SearchNodeNetwork(NavPath currentPath, NavNode destination)
