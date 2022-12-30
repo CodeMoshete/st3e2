@@ -63,7 +63,10 @@ public class NavNetwork : MonoBehaviour
             for (int j = 0, count2 = nodes[i].Links.Count; j < count2; ++j)
             {
                 NavNodeLink link = nodes[i].Links[j];
-                Gizmos.DrawLine(nodes[i].transform.position, link.DestinationNode.transform.position);
+                if (link != null && link.DestinationNode != null)
+                {
+                    Gizmos.DrawLine(nodes[i].transform.position, link.DestinationNode.transform.position);
+                }
             }
 
             Gizmos.color = Color.green;

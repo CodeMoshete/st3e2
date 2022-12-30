@@ -7,4 +7,5 @@ public class NodeNavigationComponent
     public NavNode CurrentNode;
     public float WalkRate;
     public float TurnRate;
+    public string CurrentNavNetwork;
 }

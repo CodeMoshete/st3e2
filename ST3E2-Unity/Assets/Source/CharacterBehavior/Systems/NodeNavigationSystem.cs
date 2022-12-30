@@ -104,9 +104,29 @@ public class NodeNavigationSystem : ICharacterSystem
                 Vector3 moveVector = character.transform.forward * navComp.WalkRate * dt * walkDirectionModifier;
                 Vector3 currentPos = character.transform.position;
                 currentPos += moveVector;
+
+                // TODO: Only do this if the character is navigating the currently active network.
+                currentPos = GetRaycastForGround(currentPos);
+
                 character.transform.position = currentPos;
             }
         }
+    }
+
+    private Vector3 GetRaycastForGround(Vector3 currentPos)
+    {
+        Vector3 testPoint = currentPos;
+        testPoint.y += 0.5f;
+
+        int layerMask = 1 << LayerMask.NameToLayer("Teleport");
+
+        RaycastHit hit;
+        if (Physics.Raycast(testPoint, Vector3.down, out hit, Mathf.Infinity, layerMask))
+        {
+            currentPos.y = hit.point.y;
+        }
+
+        return currentPos;
     }
 
     public void Destroy()
