@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class NavWorld : MonoBehaviour
 {
+    public NavWorldID WorldID;
+    public NavNetwork ActiveNetwork { get; private set; }
+
     private List<NavNetwork> networks;
     public List<NavNetwork> Networks
     {
@@ -14,6 +17,11 @@ public class NavWorld : MonoBehaviour
             }
             return networks;
         }
+    }
+
+    public void SetActiveNetworkByName(string networkName)
+    {
+        ActiveNetwork = GetNetworkByName(networkName);
     }
 
     public NavNetwork GetNetworkByName(string networkName)

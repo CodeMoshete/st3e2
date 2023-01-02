@@ -69,6 +69,12 @@ public class NodeNavigationSystem : ICharacterSystem
                 {
                     string arrivalMsg = "Reached waypoint " + nextNode.name;
                     navComp.NavigationQueue.Dequeue();
+
+                    if (nextNode.ArrivalAction != null)
+                    {
+                        nextNode.ArrivalAction.Initiate();
+                    }
+
                     if (navComp.NavigationQueue.Count == 0)
                     {
                         // Arrived at final destination.
@@ -76,6 +82,7 @@ public class NodeNavigationSystem : ICharacterSystem
                         character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
                         continue;
                     }
+
                     nextNode = navComp.NavigationQueue.Peek();
                     navComp.CurrentNode = nextNode;
                     Debug.Log(arrivalMsg + ", next waypoint " + nextNode.name);

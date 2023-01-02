@@ -6,6 +6,7 @@ public class NavNode : MonoBehaviour
     public List<NavNodeLink> Links;
     public float TriggerRadius = 1f;
     public string ExitNodeTag;
+    public CustomAction ArrivalAction;
 
     public void Initialize()
     {
