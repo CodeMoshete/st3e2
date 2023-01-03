@@ -72,7 +72,19 @@ public class NodeNavigationSystem : ICharacterSystem
 
                     if (nextNode.ArrivalAction != null)
                     {
+                        // Some actions require access to the character on that node.
+                        if (nextNode.CaptureCharacterForAction)
+                        {
+                            nextNode.CurrentCharacter = character;
+                        }
+
                         nextNode.ArrivalAction.Initiate();
+
+                        // Some action chains require the character to cease navigation.
+                        if (!navComp.IsNavigating)
+                        {
+                            continue;
+                        }
                     }
 
                     if (navComp.NavigationQueue.Count == 0)
