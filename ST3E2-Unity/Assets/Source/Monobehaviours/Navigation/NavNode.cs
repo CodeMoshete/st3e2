@@ -14,9 +14,25 @@ public class NavNode : MonoBehaviour
     public float TriggerRadius = 1f;
     public string ExitNodeTag;
     public CustomAction ArrivalAction;
-    public bool CaptureCharacterForAction;
+    public bool CaptureCharactersForAction;
+    public bool DisableNavigationOnArrival;
+
     [HideInInspector]
-    public CharacterEntity CurrentCharacter; // IF USED - MUST BE MANUALLY RELEASED!
+    // IF USED - MUST BE MANUALLY RELEASED!
+    public CharacterEntity CurrentCharacter
+    {
+        get
+        {
+            if (CharactersInQueue.Count > 0)
+            {
+                return CharactersInQueue[0];
+            }
+            return null;
+        }
+    }
+
+    [HideInInspector]
+    public List<CharacterEntity> CharactersInQueue = new List<CharacterEntity>();
     public List<NavNodeAttribute> Attributes = new List<NavNodeAttribute>();
 
     public void Initialize()
@@ -24,6 +40,30 @@ public class NavNode : MonoBehaviour
         for (int i = 0, count = Links.Count; i < count; ++i)
         {
             Links[i].SourceNode = this;
+        }
+    }
+
+    public void EnqueueCharacter(CharacterEntity character)
+    {
+        Debug.Log("Character enqueued to " + name + ": " + character.name);
+        CharactersInQueue.Add(character);
+    }
+
+    public void ReleaseCurrentCharacter()
+    {
+        if (CharactersInQueue.Count > 0)
+        {
+            Debug.Log("Character dequeued from " + name + ": " + CharactersInQueue[0].name);
+            CharactersInQueue.RemoveAt(0);
+
+            if (CharactersInQueue.Count > 0 && ArrivalAction != null)
+            {
+                ArrivalAction.Initiate();
+            }
+        }
+        else
+        {
+            Debug.LogError("Attempted to release a character, but the queue is empty!");
         }
     }
 

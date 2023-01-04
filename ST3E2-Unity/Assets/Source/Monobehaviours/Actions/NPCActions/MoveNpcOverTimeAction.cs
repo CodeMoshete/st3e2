@@ -5,7 +5,8 @@ public class MoveNpcOverTimeAction : NpcBaseAction
     public Transform StartPosition;
     public Transform Destination;
     public float MoveTime;
-    public CustomAction NextAction;
+    public CustomAction OnStartAction;
+    public CustomAction OnFinishAction;
 
     private float initialMoveTime;
 
@@ -14,6 +15,11 @@ public class MoveNpcOverTimeAction : NpcBaseAction
         base.Initiate();
         initialMoveTime = MoveTime;
         Service.UpdateManager.AddObserver(OnUpdate);
+
+        if (OnStartAction != null)
+        {
+            OnStartAction.Initiate();
+        }
     }
 
     private void OnUpdate(float dt)
@@ -32,9 +38,10 @@ public class MoveNpcOverTimeAction : NpcBaseAction
             TargetEntity.transform.position = Destination.position;
             Service.UpdateManager.RemoveObserver(OnUpdate);
 
-            if (NextAction != null)
+            if (OnFinishAction != null)
             {
-                NextAction.Initiate();
+                MoveTime = initialMoveTime;
+                OnFinishAction.Initiate();
             }
         }
     }

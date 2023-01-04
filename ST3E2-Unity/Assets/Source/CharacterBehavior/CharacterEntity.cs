@@ -24,17 +24,17 @@ public class CharacterEntity : MonoBehaviour
 
         AnimComponent = GetComponent<Animator>();
 
-        NavNetwork navNetwork = GameObject.Find("Deck1").GetComponent<NavNetwork>();
+        NavNetwork navNetwork = GameObject.Find("Deck3").GetComponent<NavNetwork>();
         NavComponent.CurrentNode = navNetwork.GetNodeByName("Node"); // Set start node.
-        NavComponent.NavigationQueue = navNetwork.Navigate("Node", "Node (5)");
-        NavComponent.FinalDestination = navNetwork.GetNodeByName("Node (5)");
+        //NavComponent.NavigationQueue = navNetwork.Navigate("Node", "Node (5)");
+        //NavComponent.FinalDestination = navNetwork.GetNodeByName("Node (5)");
     }
 
     private void Update()
     {
         if (CalculateNewPath)
         {
-            NavNetwork navNetwork = GameObject.Find("Deck1").GetComponent<NavNetwork>();
+            NavNetwork navNetwork = GameObject.Find("Deck3").GetComponent<NavNetwork>();
             CalculateNewPath = false;
             NavComponent.NavigationQueue = navNetwork.Navigate(NavComponent.CurrentNode.name, DestNodeName);
             NavComponent.FinalDestination = navNetwork.GetNodeByName(DestNodeName);

@@ -1,4 +1,6 @@
-﻿public class CheckNavNodeAttribute : CustomAction
+﻿using UnityEngine;
+
+public class CheckNavNodeAttribute : CustomAction
 {
     public NavNode TargetNode;
     public string AttributeName;
@@ -13,15 +15,18 @@
         {
             if (attribute.Value && IfTrue)
             {
+                Debug.Log(AttributeName + " is TRUE");
                 IfTrue.Initiate();
             }
             else if (!attribute.Value && IfFalse)
             {
+                Debug.Log(AttributeName + " is FALSE");
                 IfFalse.Initiate();
             }
         }
         else if (IfNotExists != null)
         {
+            Debug.Log(AttributeName + " is NOT FOUND");
             IfNotExists.Initiate();
         }
     }

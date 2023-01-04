@@ -57,7 +57,7 @@ public class NodeNavigationSystem : ICharacterSystem
             CharacterEntity character = managedCharacters[i];
             NodeNavigationComponent navComp = character.NavComponent;
 
-            if (navComp.FinalDestination != null)
+            if (navComp.IsNavigating && navComp.FinalDestination != null)
             {
                 NavNode nextNode = navComp.NavigationQueue.Peek();
 
@@ -73,9 +73,16 @@ public class NodeNavigationSystem : ICharacterSystem
                     if (nextNode.ArrivalAction != null)
                     {
                         // Some actions require access to the character on that node.
-                        if (nextNode.CaptureCharacterForAction)
+                        if (nextNode.CaptureCharactersForAction)
                         {
-                            nextNode.CurrentCharacter = character;
+                            nextNode.EnqueueCharacter(character);
+
+                            if (nextNode.DisableNavigationOnArrival)
+                            {
+                                Debug.Log("Disable nav comp for " + character.name);
+                                character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
+                                navComp.IsNavigating = false;
+                            }
                         }
 
                         nextNode.ArrivalAction.Initiate();

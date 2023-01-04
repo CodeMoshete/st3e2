@@ -8,5 +8,5 @@ public class NodeNavigationComponent
     public float WalkRate;
     public float TurnRate;
     public string CurrentNavNetwork;
-    public bool IsNavigating;
+    public bool IsNavigating = true;
 }
