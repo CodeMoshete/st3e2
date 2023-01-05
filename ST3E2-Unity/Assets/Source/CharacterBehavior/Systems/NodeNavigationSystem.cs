@@ -99,6 +99,7 @@ public class NodeNavigationSystem : ICharacterSystem
                         // Arrived at final destination.
                         navComp.FinalDestination = null;
                         character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
+                        navComp.CurrentNode = nextNode;
                         continue;
                     }
 

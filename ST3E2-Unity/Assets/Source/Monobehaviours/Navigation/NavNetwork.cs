@@ -48,6 +48,8 @@ public class NavNetwork : MonoBehaviour
     private HashSet<NavNode> seenNodes = new HashSet<NavNode>();
     private List<NavPath> possiblePaths = new List<NavPath>();
 
+    private NavPath currentOptimalPath;
+
 #if UNITY_EDITOR
     [ExecuteInEditMode]
     private void OnDrawGizmos()
@@ -101,6 +103,7 @@ public class NavNetwork : MonoBehaviour
 
     public Queue<NavNode> Navigate(NavNode source, NavNode destination)
     {
+        Debug.Log("[NavNetwork] Calculate navigation from " + source.name + " to " + destination.name);
         for (int i = 0, count = source.Links.Count; i < count; ++i)
         {
             NavPath basePathVariant = new NavPath();
@@ -127,20 +130,10 @@ public class NavNetwork : MonoBehaviour
             }
         }
 
-        Debug.Log("Number of possible paths: " + possiblePaths.Count);
-        NavPath optimalPath = null;
-        for (int i = 0, count = possiblePaths.Count; i < count; ++i)
-        {
-            if (possiblePaths[i].isAtDestination)
-            {
-                if (optimalPath == null || possiblePaths[i].TotalLength < optimalPath.TotalLength)
-                {
-                    optimalPath = possiblePaths[i];
-                }
-            }
-        }
+        NavPath optimalPath = currentOptimalPath;
         possiblePaths.Clear();
         seenNodes.Clear();
+        currentOptimalPath = null;
 
         if (optimalPath != null)
         {
@@ -232,10 +225,20 @@ public class NavNetwork : MonoBehaviour
 
             NavNodeLink nextLink = headNode.Links[i];
             path.AddLink(nextLink);
+
+            if (currentOptimalPath != null && path.TotalLength > currentOptimalPath.TotalLength)
+            {
+                path.isViable = false;
+                continue;
+            }
             
             if (nextLink.DestinationNode == destination)
             {
                 path.isAtDestination = true;
+                if (currentOptimalPath == null || path.TotalLength < currentOptimalPath.TotalLength)
+                {
+                    currentOptimalPath = path;
+                }
             }
             else if(path.isViable)
             {

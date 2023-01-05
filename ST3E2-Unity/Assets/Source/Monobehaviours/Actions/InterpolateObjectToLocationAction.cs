@@ -8,6 +8,8 @@ public class InterpolateObjectToLocationAction : CustomAction
     public bool EaseIn;
     public bool EaseOut;
 	public float MovementDuration;
+    public CustomAction OnStart;
+    public CustomAction OnComplete;
     private float currentDuration;
     private Vector3 playerStartPos;
 
@@ -18,6 +20,11 @@ public class InterpolateObjectToLocationAction : CustomAction
 		isActive = true;
         currentDuration = MovementDuration;
         playerStartPos = TargetObject.transform.position;
+
+        if (OnStart != null)
+        {
+            OnStart.Initiate();
+        }
 	}
 	
 	void Update ()
@@ -71,5 +78,10 @@ public class InterpolateObjectToLocationAction : CustomAction
     {
         TargetObject.transform.position = TargetPosition.transform.position;
         isActive = false;
+
+        if (OnComplete != null)
+        {
+            OnComplete.Initiate();
+        }
     }
 }

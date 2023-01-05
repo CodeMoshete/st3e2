@@ -25,7 +25,7 @@ public class CharacterEntity : MonoBehaviour
         AnimComponent = GetComponent<Animator>();
 
         NavNetwork navNetwork = GameObject.Find("Deck3").GetComponent<NavNetwork>();
-        NavComponent.CurrentNode = navNetwork.GetNodeByName("Node"); // Set start node.
+        NavComponent.CurrentNode = navNetwork.GetNodeByName("Node (11)"); // Set start node.
         //NavComponent.NavigationQueue = navNetwork.Navigate("Node", "Node (5)");
         //NavComponent.FinalDestination = navNetwork.GetNodeByName("Node (5)");
     }
