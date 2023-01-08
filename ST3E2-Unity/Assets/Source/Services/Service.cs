@@ -56,6 +56,14 @@
         }
     }
 
+    public static NavWorldManager NavWorldManager
+    {
+        get
+        {
+            return NavWorldManager.Instance;
+        }
+    }
+
     // Manually set services
     public static PlayerData PlayerData
     {

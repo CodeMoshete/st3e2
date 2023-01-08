@@ -14,7 +14,9 @@ public enum EventId
     SetControlsEnabled,
     SetNewControlScheme,
     TogglePilotingControls,
-    LogDebugMessage
+    LogDebugMessage,
+    NavWorldChanged,
+    CurrentNavNetworkChanged
 }
 
 public delegate bool EventCallback(object cookie);

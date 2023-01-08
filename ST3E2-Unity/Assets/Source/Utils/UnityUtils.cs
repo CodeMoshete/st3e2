@@ -215,6 +215,30 @@ namespace Utils
             return returnList;
         }
 
+        public static List<T> FindAllComponentsInChildren<T>(GameObject baseObject)
+            where T : Component
+        {
+            List<T> returnList = new List<T>();
+
+            Component parentComponent = baseObject.GetComponent<T>();
+            if (parentComponent != null)
+            {
+                returnList.Add(parentComponent as T);
+            }
+
+            List<GameObject> allObjects = GetAllChildren(baseObject);
+            foreach (GameObject gameObj in allObjects)
+            {
+                Component childComponent = gameObj.GetComponent<T>();
+                if (childComponent != null)
+                {
+                    returnList.Add(childComponent as T);
+                }
+            }
+
+            return returnList;
+        }
+
         /// <summary>
         /// Adds a GameObject to a parent with the transform properties it was loaded with.
         /// </summary>

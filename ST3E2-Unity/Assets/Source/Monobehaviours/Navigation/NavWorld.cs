@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class NavWorld : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class NavWorld : MonoBehaviour
         {
             if (networks == null)
             {
-                networks = new List<NavNetwork>(gameObject.GetComponentsInChildren<NavNetwork>());
+                networks = UnityUtils.FindAllComponentsInChildren<NavNetwork>(gameObject);
             }
             return networks;
         }
@@ -21,16 +22,30 @@ public class NavWorld : MonoBehaviour
 
     public void SetActiveNetworkByName(string networkName)
     {
-        ActiveNetwork = GetNetworkByName(networkName);
+        NavNetwork nextNetwork = GetNetworkByName(networkName);
+        if (nextNetwork == ActiveNetwork)
+        {
+            return;
+        }
+
+        if (ActiveNetwork != null)
+        {
+            ActiveNetwork.gameObject.SetActive(false);
+        }
+
+        ActiveNetwork = nextNetwork;
+        ActiveNetwork.gameObject.SetActive(true);
+
+        Service.EventManager.SendEvent(EventId.CurrentNavNetworkChanged, ActiveNetwork.name);
     }
 
     public NavNetwork GetNetworkByName(string networkName)
     {
-        for (int i = 0, count = networks.Count; i < count; ++i)
+        for (int i = 0, count = Networks.Count; i < count; ++i)
         {
-            if (networks[i].NetworkName == networkName)
+            if (Networks[i].NetworkName == networkName)
             {
-                return networks[i];
+                return Networks[i];
             }
         }
         return null;
