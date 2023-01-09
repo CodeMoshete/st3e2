@@ -40,7 +40,7 @@ public class CharacterEntity : MonoBehaviour
         }
         isInitialized = true;
 
-        Service.CharacterSystems.Navigation.AddCharacter(this);
+        NavComponent = new NodeNavigationComponent();
         NavComponent.TurnRate = 70f;
         NavComponent.WalkRate = 1f;
 
@@ -49,6 +49,8 @@ public class CharacterEntity : MonoBehaviour
 
     public void LoadAndShowView()
     {
+        ShowView = true;
+        isViewShown = true;
         StartCoroutine(LoadViewAsync());
     }
 
@@ -60,24 +62,42 @@ public class CharacterEntity : MonoBehaviour
             yield return null;
         }
 
-        View = GameObject.Instantiate((GameObject)viewRequest.asset, transform);
-        AnimComponent.OnViewCreated(View);
+        // The view may be unloaded before the load completes.
+        if (isViewShown)
+        {
+            View = GameObject.Instantiate((GameObject)viewRequest.asset, transform);
+            AnimComponent.OnViewCreated(View);
+        }
     }
 
     public void DestroyView()
     {
+        ShowView = false;
+        isViewShown = false;
         AnimComponent.OnViewDestroyed();
-        GameObject.Destroy(View);
+
+        if (View != null)
+        {
+            GameObject.Destroy(View);
+        }
     }
 
     private void Update()
     {
         if (CalculateNewPath)
         {
-            NavNetwork navNetwork = Service.NavWorldManager.CurrentNavWorld.GetNetworkByName(DestNetworkName);
+            NavWorld navWorld = Service.NavWorldManager.CurrentNavWorld;
             CalculateNewPath = false;
-            NavComponent.NavigationQueue = navNetwork.Navigate(NavComponent.CurrentNode.name, DestNodeName);
-            NavComponent.FinalDestination = navNetwork.GetNodeByName(DestNodeName);
+            NavComponent.NavigationQueue = navWorld.Navigate(
+                NavComponent.CurrentNavNetwork,
+                NavComponent.CurrentNode.name,
+                DestNetworkName,
+                DestNodeName);
+
+            NavNetwork targetNetwork = 
+                Service.NavWorldManager.CurrentNavWorld.GetNetworkByName(DestNetworkName);
+
+            NavComponent.FinalDestination = targetNetwork.GetNodeByName(DestNodeName);
         }
 
         if (ShowView && !isViewShown)

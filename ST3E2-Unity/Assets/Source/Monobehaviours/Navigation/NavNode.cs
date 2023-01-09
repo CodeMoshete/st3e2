@@ -18,6 +18,9 @@ public class NavNode : MonoBehaviour
     public bool DisableNavigationOnArrival;
 
     [HideInInspector]
+    public string ParentNetworkName;
+
+    [HideInInspector]
     // IF USED - MUST BE MANUALLY RELEASED!
     public CharacterEntity CurrentCharacter
     {
@@ -35,8 +38,9 @@ public class NavNode : MonoBehaviour
     public List<CharacterEntity> CharactersInQueue = new List<CharacterEntity>();
     public List<NavNodeAttribute> Attributes = new List<NavNodeAttribute>();
 
-    public void Initialize()
+    public void Initialize(string parentNetworkName)
     {
+        ParentNetworkName = parentNetworkName;
         for (int i = 0, count = Links.Count; i < count; ++i)
         {
             Links[i].SourceNode = this;

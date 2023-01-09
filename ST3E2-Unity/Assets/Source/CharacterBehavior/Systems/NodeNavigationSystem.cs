@@ -9,31 +9,66 @@ public class NodeNavigationSystem : ICharacterSystem
     public void Initialize()
     {
         managedCharacters = new List<CharacterEntity>();
+        Service.EventManager.AddListener(EventId.CurrentNavNetworkChanged, OnNavNetworkChanged);
+    }
+
+    private bool OnNavNetworkChanged(object cookie)
+    {
+        string newNavNetwork = (string)cookie;
+        for (int i = 0, count = managedCharacters.Count; i < count; ++i)
+        {
+            CharacterEntity character = managedCharacters[i];
+            if (character.NavComponent.CurrentNavNetwork == newNavNetwork)
+            {
+                character.LoadAndShowView();
+            }
+            else
+            {
+                character.DestroyView();
+            }
+        }
+        return false;
     }
 
     public void AddCharacter(CharacterEntity character)
     {
-        if (character.NavComponent == null)
+        if (!managedCharacters.Contains(character))
         {
-            character.NavComponent = new NodeNavigationComponent();
             managedCharacters.Add(character);
+            EvaluateCharacterVisibility(character);
         }
         else
         {
-            Debug.LogError(string.Format("Character {0} already has a NodeNavigationComponent!", character.name));
+            Debug.LogError(string.Format("Character {0} has already been added!", character.name));
         }
     }
 
     public void RemoveCharacter(CharacterEntity character)
     {
-        if (character.NavComponent != null)
+        if (managedCharacters.Contains(character))
         {
-            character.NavComponent = null;
             managedCharacters.Remove(character);
         }
         else
         {
-            Debug.LogError(string.Format("Character {0} already has a NodeNavigationComponent!", character.name));
+            Debug.LogError(string.Format("Character {0} is not managed!", character.name));
+        }
+    }
+
+    private void EvaluateCharacterVisibility(CharacterEntity character)
+    {
+        string navNetworkName =
+                Service.NavWorldManager.CurrentNavWorld.ActiveNetwork.NetworkName;
+
+        string characterNetwork = character.NavComponent.CurrentNavNetwork;
+
+        if (characterNetwork == navNetworkName)
+        {
+            character.LoadAndShowView();
+        }
+        else
+        {
+            character.DestroyView();
         }
     }
 
@@ -61,15 +96,20 @@ public class NodeNavigationSystem : ICharacterSystem
             {
                 NavNode nextNode = navComp.NavigationQueue.Peek();
 
+                bool isExitNodeTransition = false;
+
                 Vector3 vectorToNext = nextNode.transform.position - character.transform.position;
                 float destRadius = navComp.NavigationQueue.Count > 1 ? 
                     nextNode.TriggerRadius * nextNode.TriggerRadius :
                     0.1f;
+
+                // Arrived at next node in the list.
                 if (Vector3.SqrMagnitude(vectorToNext) < destRadius)
                 {
                     string arrivalMsg = "Reached waypoint " + nextNode.name;
                     navComp.NavigationQueue.Dequeue();
 
+                    // Apply any action effects from the node just arrived at.
                     if (nextNode.ArrivalAction != null)
                     {
                         // Some actions require access to the character on that node.
@@ -94,6 +134,10 @@ public class NodeNavigationSystem : ICharacterSystem
                         }
                     }
 
+                    isExitNodeTransition = 
+                        !string.IsNullOrEmpty(nextNode.ExitNodeTag) && 
+                        !string.IsNullOrEmpty(navComp.NavigationQueue.Peek().ExitNodeTag);
+
                     if (navComp.NavigationQueue.Count == 0)
                     {
                         // Arrived at final destination.
@@ -108,32 +152,44 @@ public class NodeNavigationSystem : ICharacterSystem
                     Debug.Log(arrivalMsg + ", next waypoint " + nextNode.name);
                 }
 
-                Vector3 normalVectorToNext = vectorToNext.normalized;
-                Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z).normalized;
-                Vector2 flatFwd = new Vector2(character.transform.forward.x, character.transform.forward.z).normalized;
-                Vector2 flatRt = new Vector2(character.transform.right.x, character.transform.right.z).normalized;
-                float angleToTarget = Vector2.Angle(flatFwd, flatVecToNext);
-                float rightModifier = Vector2.Dot(flatRt, flatVecToNext) > 0 ? 1f : -1f;
-                float amountToRotate = Mathf.Min(angleToTarget, navComp.TurnRate * dt) * rightModifier;
-                character.transform.Rotate(new Vector3(0f, amountToRotate, 0f));
-
-                float walkDirectionModifier = Mathf.Max(Vector2.Dot(flatFwd, flatVecToNext), 0);
-                if (walkDirectionModifier > 0)
-                {
-                    walkDirectionModifier = -Mathf.Pow(walkDirectionModifier - 1f, 4f) + 1f;
-                }
-
-                if (!character.AnimComponent.GetBool(WALK_ANIM_KEY) && walkDirectionModifier > 0f)
-                {
-                    character.AnimComponent.SetBool(WALK_ANIM_KEY, true);
-                }
-
-                Vector3 moveVector = character.transform.forward * navComp.WalkRate * dt * walkDirectionModifier;
                 Vector3 currentPos = character.transform.position;
-                currentPos += moveVector;
+                if (isExitNodeTransition)
+                {
+                    currentPos = nextNode.transform.position;
+                    navComp.CurrentNavNetwork = nextNode.ParentNetworkName;
+                    EvaluateCharacterVisibility(character);
+                }
+                else
+                {
+                    Vector3 normalVectorToNext = vectorToNext.normalized;
+                    Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z).normalized;
+                    Vector2 flatFwd = new Vector2(character.transform.forward.x, character.transform.forward.z).normalized;
+                    Vector2 flatRt = new Vector2(character.transform.right.x, character.transform.right.z).normalized;
+                    float angleToTarget = Vector2.Angle(flatFwd, flatVecToNext);
+                    float rightModifier = Vector2.Dot(flatRt, flatVecToNext) > 0 ? 1f : -1f;
+                    float amountToRotate = Mathf.Min(angleToTarget, navComp.TurnRate * dt) * rightModifier;
+                    character.transform.Rotate(new Vector3(0f, amountToRotate, 0f));
 
-                // TODO: Only do this if the character is navigating the currently active network.
-                currentPos = GetRaycastForGround(currentPos);
+                    float walkDirectionModifier = Mathf.Max(Vector2.Dot(flatFwd, flatVecToNext), 0);
+                    if (walkDirectionModifier > 0)
+                    {
+                        walkDirectionModifier = -Mathf.Pow(walkDirectionModifier - 1f, 4f) + 1f;
+                    }
+
+                    if (!character.AnimComponent.GetBool(WALK_ANIM_KEY) && walkDirectionModifier > 0f)
+                    {
+                        character.AnimComponent.SetBool(WALK_ANIM_KEY, true);
+                    }
+
+                    Vector3 moveVector = character.transform.forward * navComp.WalkRate * dt * walkDirectionModifier;
+                
+                    currentPos += moveVector;
+
+                    if (navComp.CurrentNavNetwork == Service.NavWorldManager.CurrentNavWorld.ActiveNetwork.NetworkName)
+                    {
+                        currentPos = GetRaycastForGround(currentPos);
+                    }
+                }
 
                 character.transform.position = currentPos;
             }

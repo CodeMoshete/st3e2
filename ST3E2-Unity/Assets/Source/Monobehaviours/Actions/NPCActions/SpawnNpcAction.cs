@@ -19,6 +19,8 @@ public class SpawnNpcAction : CustomAction
         character.NavComponent.CurrentNavNetwork = NavNetworkName;
         character.NavComponent.CurrentNode = startNode;
 
+        Service.CharacterSystems.Navigation.AddCharacter(character);
+
         if (NextAction != null)
         {
             NextAction.Initiate();

@@ -37,7 +37,7 @@ public class NavNetwork : MonoBehaviour
 
                 for (int i = 0, count = cachedNodes.Count; i < count; ++i)
                 {
-                    cachedNodes[i].Initialize();
+                    cachedNodes[i].Initialize(NetworkName);
                 }
             }
             return cachedNodes;
@@ -186,14 +186,14 @@ public class NavNetwork : MonoBehaviour
     {
         NavNode closestExitNode = null;
         float closestDistance = float.MaxValue;
-        for (int i = 0, count = cachedExitNodes.Count; i < count; ++i)
+        for (int i = 0, count = ExitNodes.Count; i < count; ++i)
         {
             Vector3 sourcePos = source.transform.position;
-            float thisDist = Vector3.SqrMagnitude(cachedExitNodes[i].transform.position - sourcePos);
+            float thisDist = Vector3.SqrMagnitude(ExitNodes[i].transform.position - sourcePos);
             if (thisDist < closestDistance)
             {
                 closestDistance = thisDist;
-                closestExitNode = cachedExitNodes[i];
+                closestExitNode = ExitNodes[i];
             }
         }
         return closestExitNode;
