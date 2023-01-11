@@ -16,7 +16,8 @@ public class NavNodeLink
             {
                 if (SourceNode == null || DestinationNode == null)
                 {
-                    Debug.LogError("Null node");
+                    NavNode activeNode = SourceNode != null ? SourceNode : DestinationNode;
+                    Debug.LogError("Null node from source node " + activeNode?.name + " in network " + activeNode?.ParentNetworkName);
                 }
 
                 Vector3 directionVector = DestinationNode.transform.position - SourceNode.transform.position;

@@ -161,33 +161,45 @@ public class NodeNavigationSystem : ICharacterSystem
                 }
                 else
                 {
-                    Vector3 normalVectorToNext = vectorToNext.normalized;
-                    Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z).normalized;
-                    Vector2 flatFwd = new Vector2(character.transform.forward.x, character.transform.forward.z).normalized;
-                    Vector2 flatRt = new Vector2(character.transform.right.x, character.transform.right.z).normalized;
-                    float angleToTarget = Vector2.Angle(flatFwd, flatVecToNext);
-                    float rightModifier = Vector2.Dot(flatRt, flatVecToNext) > 0 ? 1f : -1f;
-                    float amountToRotate = Mathf.Min(angleToTarget, navComp.TurnRate * dt) * rightModifier;
-                    character.transform.Rotate(new Vector3(0f, amountToRotate, 0f));
-
-                    float walkDirectionModifier = Mathf.Max(Vector2.Dot(flatFwd, flatVecToNext), 0);
-                    if (walkDirectionModifier > 0)
+                    if (character.IsViewVisible)
                     {
-                        walkDirectionModifier = -Mathf.Pow(walkDirectionModifier - 1f, 4f) + 1f;
-                    }
+                        Vector3 normalVectorToNext = vectorToNext;
+                        Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z).normalized;
+                        Vector2 flatFwd = new Vector2(character.transform.forward.x, character.transform.forward.z).normalized;
+                        Vector2 flatRt = new Vector2(character.transform.right.x, character.transform.right.z).normalized;
+                        float angleToTarget = Vector2.Angle(flatFwd, flatVecToNext);
+                        float rightModifier = Vector2.Dot(flatRt, flatVecToNext) > 0 ? 1f : -1f;
+                        float amountToRotate = Mathf.Min(angleToTarget, navComp.TurnRate * dt) * rightModifier;
+                        character.transform.Rotate(new Vector3(0f, amountToRotate, 0f));
 
-                    if (!character.AnimComponent.GetBool(WALK_ANIM_KEY) && walkDirectionModifier > 0f)
-                    {
-                        character.AnimComponent.SetBool(WALK_ANIM_KEY, true);
-                    }
+                        float walkDirectionModifier = Mathf.Max(Vector2.Dot(flatFwd, flatVecToNext), 0);
+                        if (walkDirectionModifier > 0)
+                        {
+                            walkDirectionModifier = -Mathf.Pow(walkDirectionModifier - 1f, 4f) + 1f;
+                        }
 
-                    Vector3 moveVector = character.transform.forward * navComp.WalkRate * dt * walkDirectionModifier;
+                        if (!character.AnimComponent.GetBool(WALK_ANIM_KEY) && walkDirectionModifier > 0f)
+                        {
+                            character.AnimComponent.SetBool(WALK_ANIM_KEY, true);
+                        }
+
+                        Vector3 moveVector = character.transform.forward * navComp.WalkRate * dt * walkDirectionModifier;
                 
-                    currentPos += moveVector;
+                        currentPos += moveVector;
 
-                    if (navComp.CurrentNavNetwork == Service.NavWorldManager.CurrentNavWorld.ActiveNetwork.NetworkName)
+                        if (navComp.CurrentNavNetwork == Service.NavWorldManager.CurrentNavWorld.ActiveNetwork.NetworkName)
+                        {
+                            currentPos = GetRaycastForGround(currentPos);
+                        }
+                    }
+                    else
                     {
-                        currentPos = GetRaycastForGround(currentPos);
+                        Vector3 normalVectorToNext = vectorToNext.normalized;
+                        Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z);
+                        float angleToTarget = Vector2.Angle(new Vector2(character.transform.forward.x, character.transform.forward.z), flatVecToNext);
+                        character.transform.Rotate(new Vector3(0f, angleToTarget, 0f));
+                        currentPos += normalVectorToNext * navComp.WalkRate * dt;
+                        
                     }
                 }
 

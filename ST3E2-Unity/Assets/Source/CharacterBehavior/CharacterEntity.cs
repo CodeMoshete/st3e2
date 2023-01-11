@@ -11,8 +11,11 @@ public class CharacterEntity : MonoBehaviour
     public string DestNetworkName;
     public string DestNodeName;
 
+    // For editor debug usage.
     public bool ShowView = false;
     private bool isViewShown = false;
+
+    public bool IsViewVisible { get; private set; }
 
     // Components are added and removed by systems.
     [HideInInspector]
@@ -67,6 +70,7 @@ public class CharacterEntity : MonoBehaviour
         {
             View = GameObject.Instantiate((GameObject)viewRequest.asset, transform);
             AnimComponent.OnViewCreated(View);
+            IsViewVisible = true;
         }
     }
 
@@ -74,6 +78,7 @@ public class CharacterEntity : MonoBehaviour
     {
         ShowView = false;
         isViewShown = false;
+        IsViewVisible = false;
         AnimComponent.OnViewDestroyed();
 
         if (View != null)

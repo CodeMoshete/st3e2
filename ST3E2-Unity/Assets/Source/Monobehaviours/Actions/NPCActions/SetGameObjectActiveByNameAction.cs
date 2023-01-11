@@ -9,13 +9,17 @@ public class SetGameObjectActiveByNameAction : ObjectReferenceActionBase
 
     public override void Initiate()
     {
-        for (int i = 0, count = TargetNames.Count; i < count; ++i)
+        if (levelContent != null)
         {
-            GameObject targetObject = levelContent.GetInteractiveObject(TargetNames[i]);
-            if (targetObject != null)
+            for (int i = 0, count = TargetNames.Count; i < count; ++i)
             {
-                targetObject.SetActive(SetActive);
+                GameObject targetObject = levelContent.GetInteractiveObject(TargetNames[i]);
+                if (targetObject != null)
+                {
+                    targetObject.SetActive(SetActive);
+                }
             }
+
         }
 
         if (OnDone != null)

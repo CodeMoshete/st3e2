@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class NavNetwork : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class NavNetwork : MonoBehaviour
         {
             if (cachedNodes == null)
             {
-                cachedNodes = new List<NavNode>(gameObject.GetComponentsInChildren<NavNode>());
+                cachedNodes = UnityUtils.FindAllComponentsInChildren<NavNode>(gameObject);
 
                 for (int i = 0, count = cachedNodes.Count; i < count; ++i)
                 {

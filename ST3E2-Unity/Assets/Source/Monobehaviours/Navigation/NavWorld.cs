@@ -66,7 +66,7 @@ public class NavWorld : MonoBehaviour
     {
         NavNetwork sourceNetwork = GetNetworkByName(sourceNetworkName);
         NavNetwork destNetwork = GetNetworkByName(destNetworkName);
-        if (sourceNetwork != null && destNetwork != null)
+        if (sourceNetwork != null && destNetwork != null && sourceNetwork != destNetwork)
         {
             Queue<NavNode> frontPortion = sourceNetwork.NavigateToExitNode(sourceName);
             Queue<NavNode> fullQueue = new Queue<NavNode>();
@@ -86,8 +86,12 @@ public class NavWorld : MonoBehaviour
                 fullQueue.Enqueue(backPortion.Dequeue());
             }
             return fullQueue;
-
         }
+        else if (sourceNetwork != null && sourceNetwork == destNetwork)
+        {
+            return sourceNetwork.Navigate(sourceName, destName);
+        }
+
         return null;
     }
 
