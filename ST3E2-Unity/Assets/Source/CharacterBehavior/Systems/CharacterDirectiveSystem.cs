@@ -12,27 +12,25 @@ public class CharacterDirectiveSystem : ICharacterSystem
 
     public void AddCharacter(CharacterEntity character)
     {
-        if (character.NavComponent == null)
+        if (!managedCharacters.Contains(character))
         {
-            character.DirectiveComponent = new CharacterDirectiveComponent();
             managedCharacters.Add(character);
         }
         else
         {
-            Debug.LogError(string.Format("Character {0} already has a CharacterDirectiveComponent!", character.name));
+            Debug.LogError(string.Format("Character {0} has already been added!", character.name));
         }
     }
 
     public void RemoveCharacter(CharacterEntity character)
     {
-        if (character.NavComponent != null)
+        if (managedCharacters.Contains(character))
         {
-            character.NavComponent = null;
             managedCharacters.Remove(character);
         }
         else
         {
-            Debug.LogError(string.Format("Character {0} already has a CharacterDirectiveComponent!", character.name));
+            Debug.LogError(string.Format("Character {0} is not managed!", character.name));
         }
     }
 
