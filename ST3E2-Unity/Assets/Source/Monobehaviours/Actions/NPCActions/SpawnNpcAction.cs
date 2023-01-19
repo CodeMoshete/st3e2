@@ -20,6 +20,7 @@ public class SpawnNpcAction : CustomAction
         character.NavComponent.CurrentNode = startNode;
 
         Service.CharacterSystems.Navigation.AddCharacter(character);
+        Service.CharacterSystems.Directives.AddCharacter(character);
 
         if (NextAction != null)
         {

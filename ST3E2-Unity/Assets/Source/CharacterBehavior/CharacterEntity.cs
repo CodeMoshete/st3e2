@@ -26,7 +26,7 @@ public class CharacterEntity : MonoBehaviour
     public AnimationComponent AnimComponent;
     [HideInInspector]
     public CharacterDirectiveComponent DirectiveComponent;
-    public List<CharacterDirective> DefaultDirectives;
+    public List<CharacterDirectiveData> WorldDirectives;
 
     private bool isInitialized = false;
 
@@ -48,6 +48,9 @@ public class CharacterEntity : MonoBehaviour
         NavComponent.WalkRate = 1f;
 
         AnimComponent = new AnimationComponent();
+
+        DirectiveComponent = new CharacterDirectiveComponent();
+        DirectiveComponent.WorldDirectives = WorldDirectives;
     }
 
     public void LoadAndShowView()

@@ -15,6 +15,17 @@ public class CharacterDirectiveSystem : ICharacterSystem
         if (!managedCharacters.Contains(character))
         {
             managedCharacters.Add(character);
+
+            List<CharacterDirectiveData> worldDirectives = character.DirectiveComponent.WorldDirectives;
+            NavWorldID currentWorld = Service.NavWorldManager.CurrentNavWorld.WorldID;
+            character.DirectiveComponent.CurrentDirectiveData = null;
+            for (int i = 0, count = worldDirectives.Count; i < count; ++i)
+            {
+                if (worldDirectives[i].NavWorld == currentWorld)
+                {
+                    character.DirectiveComponent.CurrentDirectiveData = worldDirectives[i];
+                }
+            }
         }
         else
         {
@@ -39,7 +50,28 @@ public class CharacterDirectiveSystem : ICharacterSystem
         for (int i = 0, count = managedCharacters.Count; i < count; ++i)
         {
             CharacterEntity character = managedCharacters[i];
+            CharacterDirectiveComponent directiveComp = character.DirectiveComponent;
+
+            if (directiveComp.CurrentDirective != null && 
+                character.NavComponent.CurrentNode.name == directiveComp.CurrentDirective.NavNodeName &&
+                character.NavComponent.FinalDestination == null)
+            {
+                directiveComp.CurrentDirectiveDuration -= dt;
+                if (directiveComp.CurrentDirectiveDuration <= 0f)
+                {
+                    directiveComp.CurrentDirective = null;
+                }
+            }
+            else
+            {
+                ChooseNewDirective(character, directiveComp);
+            }
         }
+    }
+
+    private void ChooseNewDirective(CharacterEntity character, CharacterDirectiveComponent directiveComp)
+    {
+
     }
 
     public void Destroy()

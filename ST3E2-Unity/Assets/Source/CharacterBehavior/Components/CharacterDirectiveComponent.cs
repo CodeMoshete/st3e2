@@ -2,7 +2,9 @@
 
 public class CharacterDirectiveComponent
 {
-    public List<CharacterDirective> Directives;
+    public List<CharacterDirectiveData> WorldDirectives;
+    public CharacterDirectiveData CurrentDirectiveData;
+    public DirectiveContextArea CurrentContextArea;
     public CharacterDirective CurrentDirective;
     public float CurrentDirectiveDuration;
 }

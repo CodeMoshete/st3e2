@@ -163,6 +163,7 @@ public class NodeNavigationSystem : ICharacterSystem
                 {
                     if (character.IsViewVisible)
                     {
+                        // Only perform the more expensive calculations when the player is actually visible.
                         Vector3 normalVectorToNext = vectorToNext;
                         Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z).normalized;
                         Vector2 flatFwd = new Vector2(character.transform.forward.x, character.transform.forward.z).normalized;
@@ -194,6 +195,7 @@ public class NodeNavigationSystem : ICharacterSystem
                     }
                     else
                     {
+                        // If the player isn't visible, perform much more basic navigation.
                         Vector3 normalVectorToNext = vectorToNext.normalized;
                         Vector2 flatVecToNext = new Vector2(normalVectorToNext.x, normalVectorToNext.z);
                         float angleToTarget = Vector2.Angle(new Vector2(character.transform.forward.x, character.transform.forward.z), flatVecToNext);

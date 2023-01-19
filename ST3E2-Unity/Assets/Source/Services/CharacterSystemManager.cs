@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class CharacterSystemManager
 {
     public NodeNavigationSystem Navigation { get; private set; }
+    public CharacterDirectiveSystem Directives { get; private set; }
 
     int numSystems = 0;
     private List<ICharacterSystem> systems = new List<ICharacterSystem>();
@@ -11,6 +12,7 @@ public class CharacterSystemManager
     public CharacterSystemManager()
     {
         Navigation = CreateSystem<NodeNavigationSystem>();
+        Directives = CreateSystem<CharacterDirectiveSystem>();
 
         Service.UpdateManager.AddObserver(Update);
     }
