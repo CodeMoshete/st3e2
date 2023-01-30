@@ -8,6 +8,9 @@ public class TimeOfDayService
     private const float SECS_IN_DAY = 86400;
     private const string ERROR_LOG = "Invalid format! Should be 00:00, but got {0}";
 
+    // For debug purposes only.
+    private int lastSeenMinute = -1;
+
     public float CurrentDaySeconds { get; private set; }
     public string CurrentFormattedTime
     {
@@ -21,6 +24,7 @@ public class TimeOfDayService
         set
         {
             CurrentDaySeconds = FormattedTimeToSeconds(value);
+            Debug.Log("Time of day set to " + CurrentDaySeconds);
         }
     }
 
@@ -43,6 +47,13 @@ public class TimeOfDayService
         {
             // A new day has begun.
             CurrentDaySeconds = CurrentDaySeconds % SECS_IN_DAY;
+        }
+
+        int currentMinute = Mathf.FloorToInt(CurrentDaySeconds / 60f);
+        if (currentMinute != lastSeenMinute)
+        {
+            lastSeenMinute = currentMinute;
+            Debug.Log("Current time: " + string.Format(CurrentSecondsToFormattedTime()));
         }
     }
 
@@ -78,5 +89,14 @@ public class TimeOfDayService
         }
 
         return (float)numHours * 3600f + (float)numMins * 60f;
+    }
+
+    public string CurrentSecondsToFormattedTime()
+    {
+        int hour = Mathf.FloorToInt(CurrentDaySeconds / 3600);
+        string hourContent = hour < 10 ? "0" + hour : hour.ToString();
+        int minute = Mathf.FloorToInt(CurrentDaySeconds % 3600) / 60;
+        string minuteContent = minute < 10 ? "0" + minute : minute.ToString();
+        return string.Format("{0}:{1}", hourContent, minuteContent);
     }
 }

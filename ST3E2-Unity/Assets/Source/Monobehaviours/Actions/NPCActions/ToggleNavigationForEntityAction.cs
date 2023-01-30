@@ -9,8 +9,8 @@ public class ToggleNavigationForEntityAction : NpcBaseAction
     {
         base.Initiate();
 
-        TargetEntity.NavComponent.IsNavigating = IsNavigationActive;
-        Debug.Log(TargetEntity.name + " IsNavigating set to " + TargetEntity.NavComponent.IsNavigating);
+        TargetEntity.NavComponent.IsNavigationEnabled = IsNavigationActive;
+        Debug.Log(TargetEntity.name + " IsNavigating set to " + TargetEntity.NavComponent.IsNavigationEnabled);
 
         if (NextAction != null)
         {

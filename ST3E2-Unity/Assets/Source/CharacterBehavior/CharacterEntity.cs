@@ -7,6 +7,10 @@ public class CharacterEntity : MonoBehaviour
 {
     public string ViewPrefabPath;
 
+    // For editor debug usage.
+    public bool EvaluateDirectives;
+
+    // For editor debug usage.
     public bool CalculateNewPath = false;
     public string DestNetworkName;
     public string DestNodeName;
@@ -106,6 +110,12 @@ public class CharacterEntity : MonoBehaviour
                 Service.NavWorldManager.CurrentNavWorld.GetNetworkByName(DestNetworkName);
 
             NavComponent.FinalDestination = targetNetwork.GetNodeByName(DestNodeName);
+        }
+
+        if (EvaluateDirectives)
+        {
+            EvaluateDirectives = false;
+            DirectiveComponent.CurrentDirectiveDuration = 0f;
         }
 
         if (ShowView && !isViewShown)

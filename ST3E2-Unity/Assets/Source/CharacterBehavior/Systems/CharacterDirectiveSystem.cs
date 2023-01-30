@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CharacterDirectiveSystem : ICharacterSystem
 {
+    private const float DEFAULT_DIRECTIVE_TIMEOUT = 60f;
     private List<CharacterEntity> managedCharacters;
 
     public void Initialize()
@@ -50,6 +51,12 @@ public class CharacterDirectiveSystem : ICharacterSystem
         for (int i = 0, count = managedCharacters.Count; i < count; ++i)
         {
             CharacterEntity character = managedCharacters[i];
+
+            if (character.NavComponent.IsInTransit)
+            {
+                continue;
+            }
+
             CharacterDirectiveComponent directiveComp = character.DirectiveComponent;
 
             if (directiveComp.CurrentDirective != null && 
@@ -64,9 +71,25 @@ public class CharacterDirectiveSystem : ICharacterSystem
             }
             else
             {
+                // If there are no valid directives, then this character is waiting.
+                if (directiveComp.CurrentDirectiveDuration > 0f)
+                {
+                    directiveComp.CurrentDirectiveDuration -= dt;
+                    continue;
+                }
+
                 // Pick and pursue a new directive.
                 ChooseNewDirective(character, directiveComp);
-                NavigateCharacter(character, directiveComp);
+                if (directiveComp.CurrentDirective != null)
+                {
+                    NavigateCharacter(character, directiveComp);
+                    Debug.Log(string.Format("{0} starting directive {1}.", character.name, directiveComp.CurrentDirective.NavNodeName));
+                }
+                else
+                {
+                    directiveComp.CurrentDirectiveDuration = DEFAULT_DIRECTIVE_TIMEOUT;
+                    Debug.Log(string.Format("{0} waiting for a valid directive.", character.name));
+                }
             }
         }
     }
@@ -127,12 +150,18 @@ public class CharacterDirectiveSystem : ICharacterSystem
                 DirectiveContextArea contextArea = selectedDirective.ContextArea;
                 directiveComp.CurrentContextArea = contextArea;
 
+                bool directivesInheritBase = contextArea.DirectivesInheritBaseSettings;
                 for (int i = 0, count = contextArea.Directives.Count; i < count; ++i)
                 {
                     CharacterDirective directive = contextArea.Directives[i];
-                    if (contextArea.DirectivesInheritBaseSettings || 
-                        (directive.StartTime > worldTime && directive.EndTime < worldTime))
+                    if (directivesInheritBase || 
+                        (directive.StartTime < worldTime && directive.EndTime > worldTime))
                     {
+                        if (directivesInheritBase)
+                        {
+                            directive.NavNetworkName = contextArea.NavNetworkName;
+                        }
+
                         WeightedDirectiveSelection weightedSelection = new WeightedDirectiveSelection();
                         weightedSelection.Directive = directive;
                         float weightRangeStart = GetCurrentWeightRange(currentWeights);
@@ -185,7 +214,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         List<CharacterDirective> baseDirectives = directiveData.BaseDirectives;
         for (int i = 0, count = baseDirectives.Count; i < count; ++i)
         {
-            if (baseDirectives[i].StartTime > worldTime && baseDirectives[i].EndTime < worldTime)
+            if (baseDirectives[i].StartTime < worldTime && baseDirectives[i].EndTime > worldTime)
             {
                 WeightedDirectiveSelection selection = new WeightedDirectiveSelection();
                 selection.Directive = baseDirectives[i];
@@ -198,7 +227,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         List<DirectiveContextArea> contextAreas = directiveData.DirectiveContextAreas;
         for (int i = 0, count = contextAreas.Count; i < count; ++i)
         {
-            if (contextAreas[i].StartTime > worldTime && contextAreas[i].EndTime < worldTime)
+            if (contextAreas[i].StartTime < worldTime && contextAreas[i].EndTime > worldTime)
             {
                 WeightedDirectiveSelection selection = new WeightedDirectiveSelection();
                 selection.ContextArea = contextAreas[i];

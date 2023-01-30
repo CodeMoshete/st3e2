@@ -25,6 +25,9 @@ public class Engine : MonoBehaviour
 
     public Transform HeadCamera;
 
+    public string OverrideTimeOfDay;
+    public bool SetTimeOfDay;
+
     private Dictionary<ControlScheme, IControlScheme> controlSchemes;
     private IControlScheme currentControlScheme;
 
@@ -152,6 +155,12 @@ public class Engine : MonoBehaviour
             MirrorCameras[i].MirrorCamera.localRotation = cameraObject.transform.rotation;
         }
         lastPlayerPosition = cameraObject.transform.position;
+
+        if (SetTimeOfDay)
+        {
+            SetTimeOfDay = false;
+            Service.TimeOfDay.CurrentFormattedTime = OverrideTimeOfDay;
+        }
     }
 
     private void LateUpdate()

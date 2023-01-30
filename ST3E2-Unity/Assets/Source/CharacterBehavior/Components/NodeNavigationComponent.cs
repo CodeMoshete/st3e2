@@ -8,5 +8,13 @@ public class NodeNavigationComponent
     public float WalkRate;
     public float TurnRate;
     public string CurrentNavNetwork;
-    public bool IsNavigating = true;
+    public bool IsNavigationEnabled = true;
+
+    public bool IsInTransit
+    {
+        get
+        {
+            return FinalDestination != null;
+        }
+    }
 }

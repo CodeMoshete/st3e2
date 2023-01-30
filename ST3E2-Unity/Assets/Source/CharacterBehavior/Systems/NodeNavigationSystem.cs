@@ -92,7 +92,7 @@ public class NodeNavigationSystem : ICharacterSystem
             CharacterEntity character = managedCharacters[i];
             NodeNavigationComponent navComp = character.NavComponent;
 
-            if (navComp.IsNavigating && navComp.FinalDestination != null)
+            if (navComp.IsNavigationEnabled && navComp.FinalDestination != null)
             {
                 NavNode nextNode = navComp.NavigationQueue.Peek();
 
@@ -121,14 +121,14 @@ public class NodeNavigationSystem : ICharacterSystem
                             {
                                 Debug.Log("Disable nav comp for " + character.name);
                                 character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
-                                navComp.IsNavigating = false;
+                                navComp.IsNavigationEnabled = false;
                             }
                         }
 
                         nextNode.ArrivalAction.Initiate();
 
                         // Some action chains require the character to cease navigation.
-                        if (!navComp.IsNavigating)
+                        if (!navComp.IsNavigationEnabled)
                         {
                             continue;
                         }
