@@ -170,6 +170,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
                     }
                 }
 
+                maxRand = GetCurrentWeightRange(currentWeights);
                 randomSelection = Random.Range(0f, maxRand);
                 for (int i = 0, count = currentWeights.Count; i < count; ++i)
                 {
