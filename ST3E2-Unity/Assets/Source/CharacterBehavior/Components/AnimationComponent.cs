@@ -6,6 +6,14 @@ public class AnimationComponent
     private Animator animator;
     private Dictionary<string, bool> boolStates = new Dictionary<string, bool>();
 
+    public AnimatorControllerParameter[] parameters
+    {
+        get
+        {
+            return animator.parameters;
+        }
+    }
+
     public void OnViewCreated(GameObject View)
     {
         animator = View.GetComponent<Animator>();
@@ -43,4 +51,5 @@ public class AnimationComponent
         boolStates.TryGetValue(name, out retVal);
         return retVal;
     }
+
 }

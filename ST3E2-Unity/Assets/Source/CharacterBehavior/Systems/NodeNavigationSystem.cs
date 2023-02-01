@@ -110,7 +110,7 @@ public class NodeNavigationSystem : ICharacterSystem
                     navComp.NavigationQueue.Dequeue();
 
                     // Apply any action effects from the node just arrived at.
-                    if (nextNode.ArrivalAction != null)
+                    if (nextNode.ArrivalAction != null && (!nextNode.PerformActionsOnlyIfFinalDestination || nextNode == navComp.FinalDestination))
                     {
                         // Some actions require access to the character on that node.
                         if (nextNode.CaptureCharactersForAction)
@@ -218,7 +218,7 @@ public class NodeNavigationSystem : ICharacterSystem
         int layerMask = 1 << LayerMask.NameToLayer("Teleport");
 
         RaycastHit hit;
-        if (Physics.Raycast(testPoint, Vector3.down, out hit, Mathf.Infinity, layerMask))
+        if (Physics.Raycast(testPoint, Vector3.down, out hit, 3f, layerMask))
         {
             currentPos.y = hit.point.y;
         }

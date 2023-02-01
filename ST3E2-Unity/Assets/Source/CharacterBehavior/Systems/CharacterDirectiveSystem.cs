@@ -99,6 +99,10 @@ public class CharacterDirectiveSystem : ICharacterSystem
         NavWorld navWorld = Service.NavWorldManager.CurrentNavWorld;
         string navNetworkName = directiveComp.CurrentDirective.NavNetworkName;
         string navNodeName = directiveComp.CurrentDirective.NavNodeName;
+
+        // Reset any bools that might have been set by node actions.
+        ClearAnimatorBools(character);
+
         NodeNavigationComponent NavComponent = character.NavComponent;
         NavComponent.NavigationQueue = navWorld.Navigate(
             NavComponent.CurrentNavNetwork,
@@ -110,6 +114,19 @@ public class CharacterDirectiveSystem : ICharacterSystem
             Service.NavWorldManager.CurrentNavWorld.GetNetworkByName(navNetworkName);
 
         NavComponent.FinalDestination = targetNetwork.GetNodeByName(navNodeName);
+    }
+
+    private void ClearAnimatorBools(CharacterEntity character)
+    {
+        AnimatorControllerParameter[] parameters = character.AnimComponent.parameters;
+        for (int j = 0, count2 = parameters.Length; j < count2; ++j)
+        {
+            AnimatorControllerParameter parameter = parameters[j];
+            if (parameter.type == AnimatorControllerParameterType.Bool)
+            {
+                character.AnimComponent.SetBool(parameter.name, false);
+            }
+        }
     }
 
     private void ChooseNewDirective(CharacterEntity character, CharacterDirectiveComponent directiveComp)

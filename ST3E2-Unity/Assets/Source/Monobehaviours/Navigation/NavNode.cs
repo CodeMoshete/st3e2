@@ -13,6 +13,7 @@ public class NavNode : MonoBehaviour
     public List<NavNodeLink> Links;
     public float TriggerRadius = 1f;
     public string ExitNodeTag;
+    public bool PerformActionsOnlyIfFinalDestination;
     public CustomAction ArrivalAction;
     public bool CaptureCharactersForAction;
     public bool DisableNavigationOnArrival;
