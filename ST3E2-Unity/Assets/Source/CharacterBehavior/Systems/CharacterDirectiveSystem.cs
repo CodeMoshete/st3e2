@@ -232,7 +232,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         List<CharacterDirective> baseDirectives = directiveData.BaseDirectives;
         for (int i = 0, count = baseDirectives.Count; i < count; ++i)
         {
-            if (baseDirectives[i].StartTime < worldTime && baseDirectives[i].EndTime > worldTime)
+            if (baseDirectives[i].StartTime <= worldTime && baseDirectives[i].EndTime > worldTime)
             {
                 WeightedDirectiveSelection selection = new WeightedDirectiveSelection();
                 selection.Directive = baseDirectives[i];
@@ -245,7 +245,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         List<DirectiveContextArea> contextAreas = directiveData.DirectiveContextAreas;
         for (int i = 0, count = contextAreas.Count; i < count; ++i)
         {
-            if (contextAreas[i].StartTime < worldTime && contextAreas[i].EndTime > worldTime)
+            if (contextAreas[i].StartTime <= worldTime && contextAreas[i].EndTime > worldTime)
             {
                 WeightedDirectiveSelection selection = new WeightedDirectiveSelection();
                 selection.ContextArea = contextAreas[i];

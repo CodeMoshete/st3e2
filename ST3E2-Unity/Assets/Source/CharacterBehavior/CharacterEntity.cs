@@ -55,6 +55,8 @@ public class CharacterEntity : MonoBehaviour
 
         DirectiveComponent = new CharacterDirectiveComponent();
         DirectiveComponent.WorldDirectives = WorldDirectives;
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void LoadAndShowView()

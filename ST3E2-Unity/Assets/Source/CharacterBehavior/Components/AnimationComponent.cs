@@ -10,6 +10,11 @@ public class AnimationComponent
     {
         get
         {
+            if (animator == null)
+            {
+                return new AnimatorControllerParameter[0];
+            }
+
             return animator.parameters;
         }
     }
