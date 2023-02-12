@@ -57,4 +57,17 @@ public class AnimationComponent
         return retVal;
     }
 
+    public void ResetToDefaultState()
+    {
+        for (int i = 0, count = parameters.Length; i < count; ++i)
+        {
+            AnimatorControllerParameter parameter = parameters[i];
+            if (parameter.type == AnimatorControllerParameterType.Bool)
+            {
+                SetBool(parameter.name, false);
+            }
+        }
+
+        boolStates.Clear();
+    }
 }

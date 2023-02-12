@@ -33,4 +33,10 @@ public class CharacterSystemManager
             systems[i].Update(dt);
         }
     }
+
+    public void PurgeEntity(CharacterEntity entity)
+    {
+        Navigation.RemoveCharacter(entity);
+        Directives.RemoveCharacter(entity);
+    }
 }

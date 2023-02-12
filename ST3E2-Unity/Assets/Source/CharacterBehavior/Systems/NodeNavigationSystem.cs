@@ -39,7 +39,7 @@ public class NodeNavigationSystem : ICharacterSystem
         }
         else
         {
-            Debug.LogError(string.Format("Character {0} has already been added!", character.name));
+            Debug.LogWarning(string.Format("Character {0} has already been added!", character.name));
         }
     }
 
@@ -51,7 +51,7 @@ public class NodeNavigationSystem : ICharacterSystem
         }
         else
         {
-            Debug.LogError(string.Format("Character {0} is not managed!", character.name));
+            Debug.LogWarning(string.Format("Character {0} is not managed!", character.name));
         }
     }
 

@@ -60,13 +60,14 @@ public class CharacterDirectiveSystem : ICharacterSystem
             CharacterDirectiveComponent directiveComp = character.DirectiveComponent;
 
             if (directiveComp.CurrentDirective != null && 
+                !directiveComp.IsDirectiveExpired &&
                 character.NavComponent.CurrentNode.name == directiveComp.CurrentDirective.NavNodeName &&
                 character.NavComponent.FinalDestination == null)
             {
                 directiveComp.CurrentDirectiveDuration -= dt;
                 if (directiveComp.CurrentDirectiveDuration <= 0f)
                 {
-                    directiveComp.CurrentDirective = null;
+                    directiveComp.IsDirectiveExpired = true;
                 }
             }
             else
@@ -80,7 +81,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
 
                 // Pick and pursue a new directive.
                 ChooseNewDirective(character, directiveComp);
-                if (directiveComp.CurrentDirective != null)
+                if (directiveComp.CurrentDirective != null && !directiveComp.IsDirectiveExpired)
                 {
                     NavigateCharacter(character, directiveComp);
                     Debug.Log(string.Format("{0} starting directive {1}.", character.name, directiveComp.CurrentDirective.NavNodeName));
@@ -101,7 +102,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         string navNodeName = directiveComp.CurrentDirective.NavNodeName;
 
         // Reset any bools that might have been set by node actions.
-        ClearAnimatorBools(character);
+        character.AnimComponent.ResetToDefaultState();
 
         NodeNavigationComponent NavComponent = character.NavComponent;
         NavComponent.NavigationQueue = navWorld.Navigate(
@@ -114,19 +115,6 @@ public class CharacterDirectiveSystem : ICharacterSystem
             Service.NavWorldManager.CurrentNavWorld.GetNetworkByName(navNetworkName);
 
         NavComponent.FinalDestination = targetNetwork.GetNodeByName(navNodeName);
-    }
-
-    private void ClearAnimatorBools(CharacterEntity character)
-    {
-        AnimatorControllerParameter[] parameters = character.AnimComponent.parameters;
-        for (int j = 0, count2 = parameters.Length; j < count2; ++j)
-        {
-            AnimatorControllerParameter parameter = parameters[j];
-            if (parameter.type == AnimatorControllerParameterType.Bool)
-            {
-                character.AnimComponent.SetBool(parameter.name, false);
-            }
-        }
     }
 
     private void ChooseNewDirective(CharacterEntity character, CharacterDirectiveComponent directiveComp)
@@ -172,7 +160,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
                 {
                     CharacterDirective directive = contextArea.Directives[i];
                     if (directivesInheritBase || 
-                        (directive.StartTime < worldTime && directive.EndTime > worldTime))
+                        (directive.StartTimeSeconds < worldTime && directive.EndTimeSeconds > worldTime))
                     {
                         if (directivesInheritBase)
                         {
@@ -206,8 +194,15 @@ public class CharacterDirectiveSystem : ICharacterSystem
                 directiveComp.CurrentContextArea = null;
             }
 
+            if (finalDirective == directiveComp.CurrentDirective)
+            {
+                Debug.Log("Continuing current directive...");
+                return;
+            }
+
             if (finalDirective != null)
             {
+                directiveComp.IsDirectiveExpired = false;
                 directiveComp.CurrentDirective = finalDirective;
                 float duration = Random.Range(finalDirective.MinDuration, finalDirective.MaxDuration);
                 directiveComp.CurrentDirectiveDuration = duration;
@@ -232,7 +227,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         List<CharacterDirective> baseDirectives = directiveData.BaseDirectives;
         for (int i = 0, count = baseDirectives.Count; i < count; ++i)
         {
-            if (baseDirectives[i].StartTime <= worldTime && baseDirectives[i].EndTime > worldTime)
+            if (baseDirectives[i].StartTimeSeconds <= worldTime && baseDirectives[i].EndTimeSeconds > worldTime)
             {
                 WeightedDirectiveSelection selection = new WeightedDirectiveSelection();
                 selection.Directive = baseDirectives[i];
@@ -245,7 +240,7 @@ public class CharacterDirectiveSystem : ICharacterSystem
         List<DirectiveContextArea> contextAreas = directiveData.DirectiveContextAreas;
         for (int i = 0, count = contextAreas.Count; i < count; ++i)
         {
-            if (contextAreas[i].StartTime <= worldTime && contextAreas[i].EndTime > worldTime)
+            if (contextAreas[i].StartTimeSeconds <= worldTime && contextAreas[i].EndTimeSeconds > worldTime)
             {
                 WeightedDirectiveSelection selection = new WeightedDirectiveSelection();
                 selection.ContextArea = contextAreas[i];

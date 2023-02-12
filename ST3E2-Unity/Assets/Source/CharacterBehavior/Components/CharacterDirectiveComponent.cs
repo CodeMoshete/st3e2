@@ -6,5 +6,6 @@ public class CharacterDirectiveComponent
     public CharacterDirectiveData CurrentDirectiveData;
     public DirectiveContextArea CurrentContextArea;
     public CharacterDirective CurrentDirective;
+    public bool IsDirectiveExpired;
     public float CurrentDirectiveDuration;
 }

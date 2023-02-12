@@ -8,8 +8,33 @@ public class DirectiveContextArea
     public int EntryWeight;
     public int ExitWeight;
     public bool TimeOfDayBound;
-    public float StartTime;
-    public float EndTime;
+    public string StartTime;
+    private float startTimeSeconds = -1f;
+    public float StartTimeSeconds
+    {
+        get
+        {
+            if (startTimeSeconds < 0f)
+            {
+                startTimeSeconds = Service.TimeOfDay.FormattedTimeToSeconds(StartTime);
+            }
+            return startTimeSeconds;
+        }
+    }
+
+    public string EndTime;
+    private float endTimeSeconds = -1f;
+    public float EndTimeSeconds
+    {
+        get
+        {
+            if (endTimeSeconds < 0f)
+            {
+                endTimeSeconds = Service.TimeOfDay.FormattedTimeToSeconds(EndTime);
+            }
+            return endTimeSeconds;
+        }
+    }
     public string NavNetworkName;
     public bool DirectivesInheritBaseSettings;
     public List<CharacterDirective> Directives;

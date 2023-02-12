@@ -7,6 +7,15 @@ public class NavWorld : MonoBehaviour
     public NavWorldID WorldID;
     public NavNetwork ActiveNetwork { get; private set; }
 
+    private List<CharacterEntity> activeCharacters = new List<CharacterEntity>();
+    public List<CharacterEntity> ActiveCharacters
+    {
+        get
+        {
+            return activeCharacters;
+        }
+    }
+
     private List<NavNetwork> networks;
     public List<NavNetwork> Networks
     {
@@ -103,5 +112,39 @@ public class NavWorld : MonoBehaviour
             return network.Navigate(source, destination);
         }
         return null;
+    }
+
+    public void RegisterCharacter(CharacterEntity character)
+    {
+        ActiveCharacters.Add(character);
+    }
+
+    public void UnregisterCharacter(CharacterEntity character)
+    {
+        ActiveCharacters.Remove(character);
+    }
+
+    public bool GetCharacterIsRegistered(string characterResourcePath)
+    {
+        string[] baseNameParts = characterResourcePath.Split('/');
+        string baseName = string.Format("{0}(Clone)", baseNameParts[baseNameParts.Length - 1]);
+        for (int i = 0, count = ActiveCharacters.Count; i < count; ++i)
+        {
+            if (ActiveCharacters[i].name == baseName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void OnDestroy()
+    {
+        for (int i = 0, count = ActiveCharacters.Count; i < count; ++i)
+        {
+            ActiveCharacters[i].Dispose();
+        }
+
+        activeCharacters = null;
     }
 }

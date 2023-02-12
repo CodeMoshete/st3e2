@@ -96,6 +96,13 @@ public class CharacterEntity : MonoBehaviour
         }
     }
 
+    public void Dispose()
+    {
+        Service.CharacterSystems.PurgeEntity(this);
+        DestroyView();
+        Destroy(this);
+    }
+
     private void Update()
     {
         if (CalculateNewPath)
