@@ -104,6 +104,12 @@ public class NavNetwork : MonoBehaviour
 
     public Queue<NavNode> Navigate(NavNode source, NavNode destination)
     {
+        if (source == null || destination == null)
+        {
+            Debug.LogError("Unable to navigate to a null node!");
+            return new Queue<NavNode>();
+        }
+
         Debug.Log("[NavNetwork] Calculate navigation from " + source.name + " to " + destination.name);
         for (int i = 0, count = source.Links.Count; i < count; ++i)
         {
@@ -136,11 +142,12 @@ public class NavNetwork : MonoBehaviour
         seenNodes.Clear();
         currentOptimalPath = null;
 
-        if (optimalPath != null)
+        if (optimalPath == null)
         {
-            Debug.Log(optimalPath.ToString());
+            Debug.LogWarning(string.Format("No path found from {0} to {1}", source.name, destination.name));
         }
 
+        Debug.Log(optimalPath.ToString());
         return optimalPath.GetNodes();
     }
 
@@ -288,6 +295,8 @@ public class NavNetwork : MonoBehaviour
                 return nodes[i];
             }
         }
+
+        Debug.LogWarning(string.Format("No NavNode found with the name {0}!", name));
         return null;
     }
 }
