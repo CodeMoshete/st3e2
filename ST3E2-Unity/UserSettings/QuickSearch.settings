@@ -11,8 +11,8 @@ debounceMs = 250
 filters = {
 }
 scopes = {
-	"last_search.000006DE" = "hiera"
 	"last_search.AB59B288" = "tag:Teleport"
+	"last_search.000006DE" = "hiera"
 }
 providers = {
 	asset = {
@@ -20,9 +20,9 @@ providers = {
 		priority = 25
 		defaultAction = null
 	}
-	log = {
-		active = false
-		priority = 210
+	query = {
+		active = true
+		priority = 100
 		defaultAction = null
 	}
 	object = {
@@ -30,19 +30,19 @@ providers = {
 		priority = 55
 		defaultAction = null
 	}
-	packages = {
-		active = true
-		priority = 90
-		defaultAction = null
-	}
 	scene = {
 		active = true
 		priority = 50
 		defaultAction = null
 	}
-	query = {
+	packages = {
 		active = true
-		priority = 100
+		priority = 90
+		defaultAction = null
+	}
+	log = {
+		active = false
+		priority = 210
 		defaultAction = null
 	}
 }
