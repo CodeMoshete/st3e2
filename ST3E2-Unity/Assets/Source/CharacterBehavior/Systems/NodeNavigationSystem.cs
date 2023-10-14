@@ -110,7 +110,8 @@ public class NodeNavigationSystem : ICharacterSystem
                     navComp.NavigationQueue.Dequeue();
 
                     // Apply any action effects from the node just arrived at.
-                    if (nextNode.ArrivalAction != null && (!nextNode.PerformActionsOnlyIfFinalDestination || nextNode == navComp.FinalDestination))
+                    if (nextNode.ArrivalAction != null && 
+                        (!nextNode.PerformActionsOnlyIfFinalDestination || nextNode == navComp.FinalDestination))
                     {
                         // Some actions require access to the character on that node.
                         if (nextNode.CaptureCharactersForAction)
@@ -134,33 +135,56 @@ public class NodeNavigationSystem : ICharacterSystem
                         }
                     }
 
+                    // Check if the node we arrived at is a transition to a different NavWorld.
                     isExitNodeTransition = 
                         !string.IsNullOrEmpty(nextNode.ExitNodeTag) && 
                         !string.IsNullOrEmpty(navComp.NavigationQueue.Peek().ExitNodeTag);
 
+                    // Check if we've arrived at our final destination node.
                     if (navComp.NavigationQueue.Count == 0)
                     {
-                        // Arrived at final destination.
                         navComp.FinalDestination = null;
                         character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
                         navComp.CurrentNode = nextNode;
                         continue;
                     }
 
+                    // Not at final destination, so start pursuing our next target node.
                     nextNode = navComp.NavigationQueue.Peek();
                     navComp.CurrentNode = nextNode;
                     Debug.Log(arrivalMsg + ", next waypoint " + nextNode.name);
+
+                    // Some nodes we don't want multiple characters sharing, so we ensure they are single occupant.
+                    if (nextNode.IsSingleOccupant && nextNode.SingleOccupant != null)
+                    {
+                        nextNode.SingleOccupant = character;
+                    }
+                }
+
+                // If we're waiting for a single occupant node, don't continue until it's cleared.
+                if (nextNode.IsSingleOccupant && nextNode.SingleOccupant != character)
+                {
+                    if (nextNode.SingleOccupant == null)
+                    {
+                        nextNode.SingleOccupant = character;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
 
                 Vector3 currentPos = character.transform.position;
                 if (isExitNodeTransition)
                 {
+                    // Handle transition to a different NavWorld.
                     currentPos = nextNode.transform.position;
                     navComp.CurrentNavNetwork = nextNode.ParentNetworkName;
                     EvaluateCharacterVisibility(character);
                 }
                 else
                 {
+                    // Movement logic to pursue next target node.
                     if (character.IsViewVisible)
                     {
                         // Only perform the more expensive calculations when the player is actually visible.

@@ -17,6 +17,10 @@ public class NavNode : MonoBehaviour
     public CustomAction ArrivalAction;
     public bool CaptureCharactersForAction;
     public bool DisableNavigationOnArrival;
+    
+    public bool IsSingleOccupant; // If true, characters will queue up to access this node.
+    [HideInInspector]
+    public CharacterEntity SingleOccupant;
 
     [HideInInspector]
     public string ParentNetworkName;
