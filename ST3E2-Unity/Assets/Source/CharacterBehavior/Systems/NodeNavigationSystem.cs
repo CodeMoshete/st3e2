@@ -155,6 +155,9 @@ public class NodeNavigationSystem : ICharacterSystem
                     Debug.Log(arrivalMsg + ", next waypoint " + nextNode.name);
 
                     // Some nodes we don't want multiple characters sharing, so we ensure they are single occupant.
+                    // NOTE that nextNode.SingleOccupant is UNSET by ReleaseCurrentCharacterAction.
+                    // This is done because the character occupying the node may be performing
+                    // actions for some time before it is okay to release them.
                     if (nextNode.IsSingleOccupant && nextNode.SingleOccupant != null)
                     {
                         nextNode.SingleOccupant = character;

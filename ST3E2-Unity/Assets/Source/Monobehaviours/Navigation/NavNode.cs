@@ -74,6 +74,11 @@ public class NavNode : MonoBehaviour
         {
             Debug.LogError("Attempted to release a character, but the queue is empty!");
         }
+
+        if (SingleOccupant != null)
+        {
+            SingleOccupant = null;
+        }
     }
 
     public NavNodeAttribute GetAttribute(string attributeName)
