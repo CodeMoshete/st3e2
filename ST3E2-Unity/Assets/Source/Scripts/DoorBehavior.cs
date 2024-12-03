@@ -11,9 +11,11 @@ public class DoorBehavior : MonoBehaviour {
 	public Text NameText;
 
 	public List<Animator> m_animators;
+    public CustomAction OnOpen;
+    public CustomAction OnClose;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
 		if (NumberText != null)
         {
@@ -34,6 +36,11 @@ public class DoorBehavior : MonoBehaviour {
 			{
 				m_animators[i].SetBool("PlayerInRange", true);
 			}
+
+            if (OnOpen != null)
+            {
+                OnOpen.Initiate();
+            }
 		}
     }
 	
@@ -45,6 +52,11 @@ public class DoorBehavior : MonoBehaviour {
 			{
 				m_animators[i].SetBool("PlayerInRange", false);
 			}
-		}
+
+            if (OnClose != null)
+            {
+                OnClose.Initiate();
+            }
+        }
     }
 }

@@ -8,15 +8,24 @@ public class NpcBaseAction : CustomAction
     public override void Initiate()
     {
         Transform currentParent = transform.parent;
-        while (currentParent != null && currentParent.GetComponent<NavNode>() == null)
+        while (currentParent != null)
         {
-            currentParent = currentParent.parent;
-        }
+            NavNode navNode = currentParent.GetComponent<NavNode>();
+            if (navNode != null)
+            {
+                ParentNode = currentParent.GetComponent<NavNode>();
+                TargetEntity = ParentNode.CurrentCharacter;
+                return;
+            }
 
-        if (currentParent != null)
-        {
-            ParentNode = currentParent.GetComponent<NavNode>();
-            TargetEntity = ParentNode.CurrentCharacter;
+            FindNpcAction findNpcAction = currentParent.GetComponent<FindNpcAction>();
+            if (findNpcAction != null)
+            {
+                TargetEntity = findNpcAction.GetTargetEntity();
+                return;
+            }
+
+            currentParent = currentParent.parent;
         }
     }
 }

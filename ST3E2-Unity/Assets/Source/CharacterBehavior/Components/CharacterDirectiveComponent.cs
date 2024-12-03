@@ -2,6 +2,7 @@
 
 public class CharacterDirectiveComponent
 {
+    public bool IsDirectivesEnabled;
     public List<CharacterDirectiveData> WorldDirectives;
     public CharacterDirectiveData CurrentDirectiveData;
     public DirectiveContextArea CurrentContextArea;

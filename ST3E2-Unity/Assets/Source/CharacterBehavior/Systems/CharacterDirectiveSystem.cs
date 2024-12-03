@@ -59,6 +59,11 @@ public class CharacterDirectiveSystem : ICharacterSystem
 
             CharacterDirectiveComponent directiveComp = character.DirectiveComponent;
 
+            if (!directiveComp.IsDirectivesEnabled)
+            {
+                continue;
+            }
+
             if (directiveComp.CurrentDirective != null && 
                 !directiveComp.IsDirectiveExpired &&
                 character.NavComponent.CurrentNode.name == directiveComp.CurrentDirective.NavNodeName &&

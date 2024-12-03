@@ -28,6 +28,7 @@ public class SpawnNpcAction : CustomAction
 
         Service.CharacterSystems.Navigation.AddCharacter(character);
         Service.CharacterSystems.Directives.AddCharacter(character);
+        Service.CharacterSystems.Conversations.AddCharacter(character);
 
         Service.NavWorldManager.CurrentNavWorld.RegisterCharacter(character);
 

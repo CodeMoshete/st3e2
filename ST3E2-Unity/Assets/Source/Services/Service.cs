@@ -88,4 +88,12 @@
             return UpdateManager.Instance;
         }
     }
+
+    public static WorldActionsManager SceneActions
+    {
+        get
+        {
+            return WorldActionsManager.Instance;
+        }
+    }
 }

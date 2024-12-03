@@ -32,6 +32,9 @@ public class CharacterEntity : MonoBehaviour
     public CharacterDirectiveComponent DirectiveComponent;
     public List<CharacterDirectiveData> WorldDirectives;
 
+    [HideInInspector]
+    public CharacterConversationComponent ConversationComponent;
+
     private bool isInitialized = false;
 
     private void Start()
@@ -55,6 +58,8 @@ public class CharacterEntity : MonoBehaviour
 
         DirectiveComponent = new CharacterDirectiveComponent();
         DirectiveComponent.WorldDirectives = WorldDirectives;
+
+        ConversationComponent = new CharacterConversationComponent();
 
         DontDestroyOnLoad(gameObject);
     }

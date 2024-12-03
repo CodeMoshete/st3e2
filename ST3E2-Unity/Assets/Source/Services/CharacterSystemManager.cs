@@ -5,6 +5,7 @@ public class CharacterSystemManager
 {
     public NodeNavigationSystem Navigation { get; private set; }
     public CharacterDirectiveSystem Directives { get; private set; }
+    public CharacterConversationSystem Conversations { get; private set; }
 
     int numSystems = 0;
     private List<ICharacterSystem> systems = new List<ICharacterSystem>();
@@ -13,7 +14,7 @@ public class CharacterSystemManager
     {
         Navigation = CreateSystem<NodeNavigationSystem>();
         Directives = CreateSystem<CharacterDirectiveSystem>();
-
+        Conversations = CreateSystem<CharacterConversationSystem>();
         Service.UpdateManager.AddObserver(Update);
     }
 
@@ -38,5 +39,6 @@ public class CharacterSystemManager
     {
         Navigation.RemoveCharacter(entity);
         Directives.RemoveCharacter(entity);
+        Conversations.RemoveCharacter(entity);
     }
 }

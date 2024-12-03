@@ -52,6 +52,15 @@ public class NavNode : MonoBehaviour
         }
     }
 
+    public CharacterEntity GetTargetEntity()
+    {
+        if (CharactersInQueue.Count > 0)
+        {
+            return CharactersInQueue[0];
+        }
+        return null;
+    }
+
     public void EnqueueCharacter(CharacterEntity character)
     {
         Debug.Log("Character enqueued to " + name + ": " + character.name);
