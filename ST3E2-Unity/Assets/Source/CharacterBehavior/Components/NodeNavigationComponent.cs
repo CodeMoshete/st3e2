@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class NodeNavigationComponent
 {
@@ -8,6 +9,7 @@ public class NodeNavigationComponent
     public float WalkRate;
     public float TurnRate;
     public string CurrentNavNetwork;
+    public Action OnFinalDestinationReached;
     public bool IsNavigationEnabled = true;
 
     public bool IsInTransit

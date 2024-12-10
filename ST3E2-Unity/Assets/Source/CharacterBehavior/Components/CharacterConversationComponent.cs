@@ -2,8 +2,9 @@
 
 public class CharacterConversationComponent
 {
+    public bool IsConversationsActive;
     public bool IsInRange;
     public List<CharacterConversationData> AllConversations;
-    public CharacterConversationData NpcInitiatedConversation;
+    public List<CharacterConversationData> NpcInitiatedConversations;
     public List<CharacterConversationData> PlayerInitiatedConversations;
 }

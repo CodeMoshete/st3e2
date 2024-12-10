@@ -5,5 +5,6 @@ using UnityEngine;
 public class CharacterConversationData : ScriptableObject
 {
     public List<ConversationCondition> Conditions;
+    public ConversationInitiationType InitiationType;
     public string ConversationResourceName;
 }

@@ -49,7 +49,7 @@ public class FadeScreenInAction : CustomAction
             }
 
             float pct = Duration / totalDuration;
-            ScreenFade.SetFadeLevel(pct);
+            ScreenFade.SetExplicitFade(pct);
 
             if (isComplete)
             {

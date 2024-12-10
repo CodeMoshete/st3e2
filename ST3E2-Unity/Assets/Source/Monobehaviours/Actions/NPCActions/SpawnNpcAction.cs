@@ -6,10 +6,12 @@ public class SpawnNpcAction : CustomAction
     public bool SpawnOnlyIfNotExists;
     public string NavNetworkName;
     public string StartNavNodeName;
+    public float StartRotation;
     public CustomAction NextAction;
 
     public override void Initiate()
     {
+        Debug.Log("Spawn NPC");
         if (SpawnOnlyIfNotExists && 
             Service.NavWorldManager.CurrentNavWorld.GetCharacterIsRegistered(EntityResourcePath))
         {
@@ -21,6 +23,12 @@ public class SpawnNpcAction : CustomAction
         NavNode startNode = navNetwork.GetNodeByName(StartNavNodeName);
 
         npc.transform.position = startNode.transform.position;
+        if (StartRotation != 0f)
+        {
+            Vector3 euler = npc.transform.eulerAngles;
+            euler.y = StartRotation;
+            npc.transform.eulerAngles = euler;
+        }
         CharacterEntity character = npc.GetComponent<CharacterEntity>();
         character.Initialize();
         character.NavComponent.CurrentNavNetwork = NavNetworkName;

@@ -146,6 +146,11 @@ public class NodeNavigationSystem : ICharacterSystem
                         navComp.FinalDestination = null;
                         character.AnimComponent.SetBool(WALK_ANIM_KEY, false);
                         navComp.CurrentNode = nextNode;
+                        if (navComp.OnFinalDestinationReached != null)
+                        {
+                            navComp.OnFinalDestinationReached();
+                            navComp.OnFinalDestinationReached = null;
+                        }
                         continue;
                     }
 

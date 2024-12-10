@@ -66,6 +66,12 @@ public class CharacterEntity : MonoBehaviour
 
     public void LoadAndShowView()
     {
+        if (isViewShown)
+        {
+            Debug.LogWarning("NPC Load View attempted, but view is already visible!");
+            return;
+        }
+
         ShowView = true;
         isViewShown = true;
         StartCoroutine(LoadViewAsync());

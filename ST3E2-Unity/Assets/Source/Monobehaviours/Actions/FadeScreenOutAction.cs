@@ -21,7 +21,7 @@ public class FadeScreenOutAction : CustomAction
             }
             else
             {
-                ScreenFade.SetFadeLevel(1f);
+                ScreenFade.SetExplicitFade(1f);
                 if (OnComplete != null)
                 {
                     OnComplete.Initiate();
@@ -55,7 +55,7 @@ public class FadeScreenOutAction : CustomAction
             }
 
             float pct = totalDuration > 0f ? 1f - (Duration / totalDuration) : 1f;
-            ScreenFade.SetFadeLevel(pct);
+            ScreenFade.SetExplicitFade(pct);
 
             if (isComplete)
             {

@@ -7,6 +7,7 @@ public class NavigateToNodeAction : NpcBaseAction
     public List<string> NavNodeNames;
     public bool CancelIfOccupied;
     public CustomAction NextAction;
+    public CustomAction OnArrivedAtDestination;
 
     public override void Initiate()
     {
@@ -44,9 +45,18 @@ public class NavigateToNodeAction : NpcBaseAction
             NavNetworkName,
             targetNode.name);
 
+        if (OnArrivedAtDestination != null)
+        {
+            NavComponent.OnFinalDestinationReached = OnFinalDestinationReached;
+        }
         NavComponent.FinalDestination = targetNode;
 
         PerformNextAction();
+    }
+
+    private void OnFinalDestinationReached()
+    {
+        OnArrivedAtDestination.Initiate();
     }
 
     private void PerformNextAction()

@@ -11,7 +11,9 @@ public enum ComparisonType
 {
     Equals,
     GreaterThan,
-    LessThan
+    GreaterThanEqualTo,
+    LessThan,
+    LessThanEqualTo
 }
 
 [Serializable]
@@ -22,5 +24,12 @@ public class ConversationCondition
     public int ConditionGroup;
     public ConditionCategory Category;
     public ComparisonType Comparison;
+    public string Key;
     public string Value;
+}
+
+public enum ConversationInitiationType
+{
+    Player,
+    Npc
 }

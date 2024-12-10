@@ -73,7 +73,7 @@ public class TeleportControlScheme : IControlScheme
 
 #if UNITY_EDITOR
         bodyObject.GetComponentInChildren<OVRCameraRig>().enabled = false;
-        bodyObject.GetComponentInChildren<CharacterCameraConstraint>().enabled = false;
+        // bodyObject.GetComponentInChildren<CharacterCameraConstraint>().enabled = false;
         UnityUtils.FindGameObject(bodyObject.gameObject, "OVRCameraRig").transform.Translate(0f, 0.25f, 0f);
 #endif
 
@@ -141,6 +141,8 @@ public class TeleportControlScheme : IControlScheme
 
             euler = cameraObject.eulerAngles;
             euler.x += delta * (mouseDelta.y / Screen.height) * sensitivity;
+            euler.x = euler.x < 270f && euler.x > 89f ? 89f : euler.x;
+            euler.x = euler.x > 90f && euler.x < 271f ? 271f : euler.x;
             cameraObject.eulerAngles = euler;
         }
 #endif
@@ -257,7 +259,7 @@ public class TeleportControlScheme : IControlScheme
             1f - (currentTeleportTime / TELEPORT_TIME) :
             currentTeleportTime / TELEPORT_TIME;
 
-        screenFader.SetFadeLevel(pct);
+        screenFader.SetExplicitFade(pct);
 
         if (currentTeleportTime == 0f)
         {

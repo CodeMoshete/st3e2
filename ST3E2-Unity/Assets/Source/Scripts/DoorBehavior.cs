@@ -14,6 +14,8 @@ public class DoorBehavior : MonoBehaviour {
     public CustomAction OnOpen;
     public CustomAction OnClose;
 
+	private List<Collider> collidingObjects = new List<Collider>();
+
     // Use this for initialization
     void Start ()
 	{
@@ -32,6 +34,8 @@ public class DoorBehavior : MonoBehaviour {
 		print ("Collision Detected enter");
         if(collisionObject.tag == "Player" || collisionObject.tag == "NPC")
         {
+			collidingObjects.Add(collisionObject);
+
 			for(int i = 0, count = m_animators.Count; i < count; i++)
 			{
 				m_animators[i].SetBool("PlayerInRange", true);
@@ -48,6 +52,13 @@ public class DoorBehavior : MonoBehaviour {
 		print ("Collision Detected exit");
         if(collisionObject.tag == "Player" || collisionObject.tag == "NPC")
 		{
+			collidingObjects.Remove(collisionObject);
+
+			if (collidingObjects.Count > 0)
+			{
+				return;
+			}
+
 			for(int i = 0, count = m_animators.Count; i < count; i++)
 			{
 				m_animators[i].SetBool("PlayerInRange", false);
